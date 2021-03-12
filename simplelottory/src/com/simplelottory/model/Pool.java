@@ -4,34 +4,43 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Pool {
-	private List<Integer> numbers;
-	private int select_max_limit;
+import com.simplelottory.excpetion.MaxLimitException;
 
-	public Pool(int count, int maxlimit) {
-		this.numbers = new ArrayList<>();
-		this.select_max_limit = maxlimit;
-		this.createPool(count);
+public class Pool {
+	private List<Integer> origin_numbers;
+	private List<Integer> selected_numbers;
+	private int selected_max_limit;
+
+	public Pool(int max_count, int selected_max_limit) {
+		this.origin_numbers = new ArrayList<>();
+		this.selected_max_limit = selected_max_limit;
+		this.createPool(max_count);
 	}
 
-	/*
-	 * sdf
-	 */
-	private void createPool(int max) {
-		for (int i = 1; i <= max; i++) {
-			numbers.add(i);
+	private void createPool(int max_count) {
+		for (int i = 1; i <= max_count; i++) {
+			origin_numbers.add(i);
 		}
 	}
 
 	public int getNumbersSize() {
-		return this.numbers.size();
+		return this.origin_numbers.size();
 	}
 
 	public List<Integer> getNumbers() {
-		return this.numbers;
+		return this.origin_numbers;
 	}
-	
-	public void shufflt() {
-		Collections.shuffle(numbers);
+
+	public void shuffle() {
+		Collections.shuffle(origin_numbers);
+	}
+
+	public int draw() {
+		if (this.selected_numbers.size() >= this.selected_max_limit) {
+			throw new MaxLimitException();
+		}
+		int draw;
+		this.selected_numbers.add(draw = this.origin_numbers.remove(0));
+		return draw;
 	}
 }

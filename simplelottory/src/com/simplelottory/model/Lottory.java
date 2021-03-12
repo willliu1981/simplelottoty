@@ -1,16 +1,26 @@
 package com.simplelottory.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Lottory {
-	private Pool main_pool;
+import com.simplelottory.excpetion.MaxLimitException;
 
-	public Lottory(Pool pool) {
-		this.main_pool = pool;
+public abstract class Lottory {
+	private List<Pool> pools;
+
+	public Lottory(Pool... pools) {
+		this.pools = new ArrayList<>();
+		for (Pool pool : pools) {
+			this.pools.add(pool);
+		}
 	}
 
 	public int getMaxNumber() {
-		return this.main_pool.getNumbersSize();
+		return this.getMaxNumber(0);
+	}
+
+	public int getMaxNumber(int index) {
+		return this.pools.get(index).getNumbersSize();
 	}
 
 	public int draw() {
@@ -18,15 +28,23 @@ public abstract class Lottory {
 		return 0;
 	}
 
-	public void shufflt() {
-		this.main_pool.shufflt();
+	public void shuffle() {
+		this.shuffle(0);
 	}
-	
-	public Pool getMainPool() {
-		return this.main_pool;
+
+	public void shuffle(int index) {
+		this.pools.get(index).shuffle();
 	}
-	
-	public List<Integer> getMainPoolNumbers(){
-		return this.getMainPool().getNumbers();
+
+	public Pool getPool() {
+		return this.getPool(0);
+	}
+
+	public Pool getPool(int index) {
+		return this.pools.get(index);
+	}
+
+	public List<Integer> getMainPoolNumbers() {
+		return this.getPool().getNumbers();
 	}
 }
