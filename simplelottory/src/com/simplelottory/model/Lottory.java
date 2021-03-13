@@ -4,15 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.simplelottory.control.LottoryDraw;
+import com.simplelottory.excpetion.DrawFinishException;
 import com.simplelottory.excpetion.MaxLimitException;
 
 public abstract class Lottory {
 	private List<Pool> pools;
 	private LottoryDraw draw = new LottoryDraw() {
 		@Override
-		public int draw() {
+		public int draw(List<Pool> pools) {
 			System.out.println("default draw test");
-			return 0;
+			int draw = -1;
+			for (Pool pool : pools) {
+				try {
+					draw = pool.draw();
+					break;
+				} catch (MaxLimitException ex) {
+					System.out.println(ex.getMessage());
+				}
+			}
+			if (draw == -1) {
+				new DrawFinishException();
+			}
+			return draw;
 		}
 	};
 
@@ -33,7 +46,7 @@ public abstract class Lottory {
 	}
 
 	public int getMaxNumber(int index) {
-		return this.pools.get(index).getNumbersSize();
+		return this.pools.get(index).getOriginNumbersSize();
 	}
 
 	public void SetLottoryDraw(LottoryDraw draw) {
@@ -41,9 +54,7 @@ public abstract class Lottory {
 	}
 
 	public int draw() {
-		this.pools.get(0).draw();
-		this.draw.draw();
-		return 0;
+		return this.draw.draw(this.pools);
 	}
 
 	public void shuffle() {
@@ -63,6 +74,13 @@ public abstract class Lottory {
 	}
 
 	public List<Integer> getMainPoolNumbers() {
-		return this.getPool().getNumbers();
+		return this.getPool().getOriginNumbers();
+	}
+	
+	public void testPrint() {
+		for(Pool pool:this.pools) {
+			pool.getSelectedNumbers() .forEach(x-> System.out.print(" "+x));
+			System.out.println();
+		}
 	}
 }

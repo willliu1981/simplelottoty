@@ -24,12 +24,20 @@ public class Pool {
 		}
 	}
 
-	public int getNumbersSize() {
+	public int getOriginNumbersSize() {
 		return this.origin_numbers.size();
 	}
 
-	public List<Integer> getNumbers() {
+	public int getSelectedNumbersSize() {
+		return this.origin_numbers.size();
+	}
+
+	public List<Integer> getOriginNumbers() {
 		return this.origin_numbers;
+	}
+
+	public List<Integer> getSelectedNumbers() {
+		return this.selected_numbers;
 	}
 
 	public void shuffle() {
@@ -37,6 +45,7 @@ public class Pool {
 	}
 
 	public int draw() {
+		System.out.println("Pool draw test");
 		if (this.selected_numbers.size() >= this.selected_max_limit) {
 			throw new MaxLimitException(this.selected_numbers.size());
 		}

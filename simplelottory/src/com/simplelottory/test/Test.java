@@ -12,7 +12,7 @@ public class Test {
 	public static void main(String[] args) {
 		SimpleLottory app = new SimpleLottory();
 
-		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6)) {
+		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6),new Pool(49, 1)) {
 		};
 		Lottory lotto539 = new Lottory(new Pool(39, 5)) {
 		};
@@ -30,8 +30,21 @@ public class Test {
 				.forEach(x -> System.out.print(" " + x));
 		//draw
 		System.out.println();
+		//app.manager.draw(LottoryType.Lotto539);
 		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.Lotto539);
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.draw(LottoryType.BigLotto);
+		System.out.println();
+		app.manager.draw(LottoryType.BigLotto);
+		System.out.println();
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.getLottory(LottoryType.BigLotto).testPrint();
 	}
 
 }

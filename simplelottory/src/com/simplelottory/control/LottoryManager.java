@@ -39,7 +39,7 @@ public class LottoryManager {
 	}
 
 	public void shuffle(String name) {
-		this.lottos.get(name).shuffle();
+		this.getLottory(name) .shuffle();
 	}
 
 	public void shuffle(LottoryType type) {
@@ -47,7 +47,9 @@ public class LottoryManager {
 	}
 
 	public int draw(LottoryType type) {
-		return this.lottos.get(type.getType()).draw();
+		int draw=this.getLottory(type).draw();
+		System.out.println("test Manager draw:"+draw);
+		return draw ;
 	}
 
 	public Lottory getLottory(String name) {
