@@ -12,21 +12,7 @@ public class Lottory {
 	private LottoryDraw draw = new LottoryDraw() {
 		@Override
 		public int draw(List<Pool> pools) {
-			System.out.println("default draw test");
-			int draw = -1;
-			for (Pool pool : pools) {
-				try {
-					draw = pool.draw();
-					break;
-				} catch (MaxLimitException ex) {
-					System.out.println(ex.getMessage());
-				}
-			}
-			System.out.println("xxx");
-			if (draw == -1) {
-				new DrawFinishException();
-			}
-			return draw + 100;
+			return this.default_draw(pools);
 		}
 	};
 
@@ -61,11 +47,9 @@ public class Lottory {
 	}
 
 	public void shuffle() {
-		this.shuffle(0);
-	}
-
-	public void shuffle(int index) {
-		this.pools.get(index).shuffle();
+		for (Pool pool : this.pools) {
+			pool.shuffle();
+		}
 	}
 
 	public Pool getPool() {
@@ -82,7 +66,7 @@ public class Lottory {
 
 	public void testPrint() {
 		for (Pool pool : this.pools) {
-			pool.getSelectedNumbers().forEach(x -> System.out.print(" " + x));
+			pool.getDrewNumbers().forEach(x -> System.out.print(" " + x));
 			System.out.println();
 		}
 	}

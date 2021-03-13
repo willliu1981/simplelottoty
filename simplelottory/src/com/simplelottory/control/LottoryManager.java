@@ -46,17 +46,22 @@ public class LottoryManager {
 	public void shuffle(LottoryType type) {
 		this.shuffle(type.getType());
 	}
-	
-	
+
+	public int drawOnce(LottoryType type) throws DrawFinishException {
+		return this.getLottory(type).draw();
+	}
 
 	public void draw(LottoryType type) {
-		int draw = -1;
-		try {
-			draw = this.getLottory(type).draw();
-		} catch (DrawFinishException ex) {
-			System.out.println(ex.getMessage());
+		while(true) {
+			int draw = -1;
+			try {
+				draw = this.drawOnce(type);
+			} catch (DrawFinishException ex) {
+				System.out.println(ex.getMessage());
+				break;
+			}
+			System.out.println("test Manager draw:" + draw);
 		}
-		System.out.println("test Manager draw:" + draw);
 	}
 
 	public Lottory getLottory(String name) {

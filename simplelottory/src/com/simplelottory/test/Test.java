@@ -11,13 +11,12 @@ public class Test {
 
 	public static void main(String[] args) {
 		SimpleLottory app = new SimpleLottory();
-
-		Pool pool;
-		Lottory bigLotto = new Lottory(new BigLottoDraw(), pool = new Pool(49, 6), new Pool(pool, 1));
+		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(0, 1));
 		Lottory lotto539 = new Lottory(new Pool(39, 5));
 		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1));
 		app.manager.addLottory(LottoryType.BigLotto, bigLotto);
 		app.manager.addLottory(LottoryType.Lotto539, lotto539);
+		app.manager.addLottory(LottoryType.SuperLotto, superlotto);
 
 		// original order
 		app.manager.getLottory(LottoryType.BigLotto).getMainPoolNumbers().stream()
@@ -25,24 +24,26 @@ public class Test {
 
 		// shuffle order
 		app.manager.shuffle(LottoryType.BigLotto);
+		app.manager.shuffle(LottoryType.Lotto539);
+		app.manager.shuffle(LottoryType.SuperLotto);
 		System.out.println();
 		app.manager.getLottory(LottoryType.BigLotto).getMainPoolNumbers().stream()
 				.forEach(x -> System.out.print(" " + x));
 		// draw
 		System.out.println();
 		// app.manager.draw(LottoryType.Lotto539);
-		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.BigLotto);
-		System.out.println();
-		app.manager.draw(LottoryType.BigLotto);
-		System.out.println();
-		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.BigLotto);
+//		app.manager.draw(LottoryType.BigLotto);
+//		app.manager.draw(LottoryType.BigLotto);
+//		app.manager.draw(LottoryType.BigLotto);
+//		app.manager.draw(LottoryType.BigLotto);
+//		app.manager.draw(LottoryType.BigLotto);
+//		app.manager.draw(LottoryType.BigLotto);
+//		System.out.println();
+//		app.manager.draw(LottoryType.BigLotto);
+//		System.out.println();
+//		app.manager.draw(LottoryType.BigLotto);
+//		app.manager.draw(LottoryType.BigLotto);
+//		app.manager.draw(LottoryType.BigLotto);
 		app.manager.draw(LottoryType.BigLotto);
 		app.manager.getLottory(LottoryType.BigLotto).testPrint();
 	}
