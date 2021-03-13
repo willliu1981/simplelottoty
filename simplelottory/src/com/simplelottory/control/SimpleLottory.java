@@ -33,32 +33,25 @@ public class SimpleLottory {
 		System.out.println("App start...");
 		tip();
 		try {
-			out: while (true) {
+			while (true) {
 				read = br.readLine();
+				/*
+				 * not legal
+				 */
 				if (read == null || !lottory_type_map.containsKey(read)) {
 					System.out.println("Input is not legal");
 					continue;
 				}
+
 				LottoryType type;
-				System.out.println(type = lottory_type_map.get(read));
+				System.out.println((type = lottory_type_map.get(read)) + ": process info[");
 				manager.draw(type);
-				System.out.print(type + ":    ");
+				System.out.print("]\nResult:\n" + type + "=   ");
 				manager.showDrewLottoryInfo(type);
+				
 				System.out.println("\nContinue Y/N?\n: ");
-				while (true) {
-					read = br.readLine();
-					if (read == null || (!read.equalsIgnoreCase("y") && !read.equalsIgnoreCase("n"))) {
-						System.out.println("Input is not legal");
-						continue;
-					}
-					if (read.equalsIgnoreCase("y")) {
-						tip();
-						manager.reset(type);
-						break;
-					} else if (read.equalsIgnoreCase("n")) {
-						System.out.println("Goodbye");
-						break out;
-					}
+				if (!askContinue(br, type)) {
+					break;
 				}
 			}
 		} catch (IOException e) {
@@ -94,5 +87,31 @@ public class SimpleLottory {
 	public static void tip() {
 		System.out.format("Choose Lottory %s=BigLotto %s=SuperLotto %s=Lotto539\n: ", Type_BigLotto, Type_SuperLotto,
 				Type_Lotto539);
+	}
+
+	public static boolean askContinue(BufferedReader br, LottoryType type) throws IOException {
+		boolean r = true;
+		String read;
+		while (true) {
+			read = br.readLine();
+			/*
+			 * not legal
+			 */
+			if (read == null || (!read.equalsIgnoreCase("y") && !read.equalsIgnoreCase("n"))) {
+				System.out.println("Input is not legal");
+				continue;
+			}
+
+			if (read.equalsIgnoreCase("y")) {
+				tip();
+				manager.reset(type);
+				break;
+			} else if (read.equalsIgnoreCase("n")) {
+				System.out.println("Goodbye");
+				r = false;
+				break;
+			}
+		}
+		return r;
 	}
 }
