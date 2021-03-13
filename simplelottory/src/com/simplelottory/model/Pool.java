@@ -18,6 +18,11 @@ public class Pool {
 		this.createPool(max_count);
 	}
 
+	public Pool(Pool pool, int selected_max_limit) {
+		this(0, selected_max_limit);
+		this.origin_numbers = pool.getOriginNumbers();
+	}
+
 	private void createPool(int max_count) {
 		for (int i = 1; i <= max_count; i++) {
 			origin_numbers.add(i);
