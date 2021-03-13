@@ -3,7 +3,7 @@ package com.simplelottory.test;
 import com.simplelottory.control.BigLottoDraw;
 import com.simplelottory.control.LottoryManager;
 import com.simplelottory.control.LottoryManager.LottoryType;
-import com.simplelottory.control.SimpleLottory;
+import com.simplelottory.main.SimpleLottory;
 import com.simplelottory.model.Lottory;
 import com.simplelottory.model.Pool;
 

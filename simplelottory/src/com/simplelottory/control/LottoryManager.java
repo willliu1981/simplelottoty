@@ -1,6 +1,7 @@
 package com.simplelottory.control;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.simplelottory.excpetion.DrawFinishException;
@@ -10,7 +11,8 @@ public class LottoryManager {
 	private Map<String, Lottory> lottos;
 
 	public enum LottoryType {
-		BigLotto("BigLotto"), SuperLotto("SuperLotto"), Lotto539("Lotto539");
+		BigLotto("BigLotto"), SuperLotto("SuperLotto"), Lotto539("Lotto539"), Lotto24("Lotto24"),
+		BingoBingo("BingoBingo");
 
 		private String type;
 
@@ -76,7 +78,7 @@ public class LottoryManager {
 	}
 
 	public void reset(LottoryType type) {
-		this.getLottory(type) .reset();
+		this.getLottory(type).reset();
 		this.shuffle(type);
 	}
 
@@ -86,6 +88,14 @@ public class LottoryManager {
 	}
 
 	public void showDrewLottoryInfo(LottoryType type) {
-		System.out.println(this.getLottory(type).getInfo());
+		System.out.println(this.getLottory(type).getPrimalInfo());
+	}
+
+	public void showDrewSortedLottoryInfo(LottoryType type) {
+		System.out.println(this.getLottory(type).getSortedInfo());
+	}
+
+	public List<Integer> getDrewNumbers(LottoryType type, int pool_index) {
+		return this.getLottory(type).getDrewNumbers(pool_index);
 	}
 }

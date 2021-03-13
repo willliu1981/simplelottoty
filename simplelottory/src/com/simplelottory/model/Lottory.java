@@ -86,13 +86,21 @@ public class Lottory {
 		}
 	}
 
-	public String getInfo() {
-		return this.getDefaultInfo();
+	public String getPrimalInfo() {
+		return this.getDefaultInfo(false);
 	}
 
-	protected String getDefaultInfo() {
+	public String getSortedInfo() {
+		return this.getDefaultInfo(true);
+	}
+
+	protected String getDefaultInfo(boolean sort) {
 		StringBuilder sb = new StringBuilder();
-		this.getDefaultPoolDrewNumbers() .forEach(x -> sb.append(" " + x));
+		if (sort) {
+			this.getDefaultPoolDrewNumbers().stream().sorted().forEach(x -> sb.append(" " + x));
+		} else {
+			this.getDefaultPoolDrewNumbers().forEach(x -> sb.append(" " + x));
+		}
 		return sb.toString();
 	}
 
