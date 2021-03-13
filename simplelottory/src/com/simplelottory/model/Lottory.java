@@ -7,7 +7,7 @@ import com.simplelottory.control.LottoryDraw;
 import com.simplelottory.excpetion.DrawFinishException;
 import com.simplelottory.excpetion.MaxLimitException;
 
-public abstract class Lottory {
+public class Lottory {
 	private List<Pool> pools;
 	private LottoryDraw draw = new LottoryDraw() {
 		@Override
@@ -22,10 +22,11 @@ public abstract class Lottory {
 					System.out.println(ex.getMessage());
 				}
 			}
+			System.out.println("xxx");
 			if (draw == -1) {
 				new DrawFinishException();
 			}
-			return draw;
+			return draw + 100;
 		}
 	};
 
@@ -53,8 +54,10 @@ public abstract class Lottory {
 		this.draw = draw;
 	}
 
-	public int draw() {
-		return this.draw.draw(this.pools);
+	public int draw() throws DrawFinishException {
+		int draw = -1;
+		draw = this.draw.draw(this.pools);
+		return draw;
 	}
 
 	public void shuffle() {
@@ -76,10 +79,10 @@ public abstract class Lottory {
 	public List<Integer> getMainPoolNumbers() {
 		return this.getPool().getOriginNumbers();
 	}
-	
+
 	public void testPrint() {
-		for(Pool pool:this.pools) {
-			pool.getSelectedNumbers() .forEach(x-> System.out.print(" "+x));
+		for (Pool pool : this.pools) {
+			pool.getSelectedNumbers().forEach(x -> System.out.print(" " + x));
 			System.out.println();
 		}
 	}

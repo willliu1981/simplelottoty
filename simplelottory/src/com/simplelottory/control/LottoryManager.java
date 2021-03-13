@@ -3,6 +3,7 @@ package com.simplelottory.control;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.simplelottory.excpetion.DrawFinishException;
 import com.simplelottory.model.Lottory;
 
 public class LottoryManager {
@@ -39,17 +40,23 @@ public class LottoryManager {
 	}
 
 	public void shuffle(String name) {
-		this.getLottory(name) .shuffle();
+		this.getLottory(name).shuffle();
 	}
 
 	public void shuffle(LottoryType type) {
 		this.shuffle(type.getType());
 	}
+	
+	
 
-	public int draw(LottoryType type) {
-		int draw=this.getLottory(type).draw();
-		System.out.println("test Manager draw:"+draw);
-		return draw ;
+	public void draw(LottoryType type) {
+		int draw = -1;
+		try {
+			draw = this.getLottory(type).draw();
+		} catch (DrawFinishException ex) {
+			System.out.println(ex.getMessage());
+		}
+		System.out.println("test Manager draw:" + draw);
 	}
 
 	public Lottory getLottory(String name) {

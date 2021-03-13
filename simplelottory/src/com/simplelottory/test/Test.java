@@ -13,10 +13,9 @@ public class Test {
 		SimpleLottory app = new SimpleLottory();
 
 		Pool pool;
-		Lottory bigLotto = new Lottory(new BigLottoDraw(), pool = new Pool(49, 6), new Pool(pool, 1)) {
-		};
-		Lottory lotto539 = new Lottory(new Pool(39, 5)) {
-		};
+		Lottory bigLotto = new Lottory(new BigLottoDraw(), pool = new Pool(49, 6), new Pool(pool, 1));
+		Lottory lotto539 = new Lottory(new Pool(39, 5));
+		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1));
 		app.manager.addLottory(LottoryType.BigLotto, bigLotto);
 		app.manager.addLottory(LottoryType.Lotto539, lotto539);
 

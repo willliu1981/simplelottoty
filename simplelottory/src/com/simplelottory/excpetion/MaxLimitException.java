@@ -1,6 +1,6 @@
 package com.simplelottory.excpetion;
 
-public class MaxLimitException extends RuntimeException {
+public class MaxLimitException extends DrawFinishException {
 	private static final String default_message = "Exceed max limit";
 
 	public MaxLimitException() {

@@ -21,7 +21,7 @@ public class BigLottoDraw extends LottoryDraw {
 			}
 		}
 		if (draw == -1) {
-			new DrawFinishException();
+			throw new DrawFinishException();
 		}
 		return draw;
 	}
