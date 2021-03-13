@@ -9,22 +9,25 @@ import com.simplelottory.excpetion.MaxLimitException;
 
 public class Lottory {
 	private List<Pool> pools;
-	private LottoryDraw draw = new LottoryDraw() {
-		@Override
-		public int draw(List<Pool> pools) {
-			return this.default_draw(pools);
-		}
-	};
+	private LottoryDraw draw;
 
 	public Lottory(Pool... pools) {
 		this.pools = new ArrayList<>();
 		for (Pool pool : pools) {
 			this.pools.add(pool);
 		}
+		//create default draw
+		draw = new LottoryDraw() {
+			@Override
+			public int draw(List<Pool> pools) {
+				return this.default_draw(pools);
+			}
+		};
 	}
 
 	public Lottory(LottoryDraw draw, Pool... pools) {
 		this(pools);
+		//override default draw
 		this.draw = draw;
 	}
 
@@ -82,9 +85,9 @@ public class Lottory {
 			System.out.println();
 		}
 	}
-	
+
 	public void reset() {
-		for(Pool pool:this.pools) {
+		for (Pool pool : this.pools) {
 			pool.reset();
 		}
 	}
