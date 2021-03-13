@@ -11,7 +11,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		SimpleLottory app = new SimpleLottory();
-		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(7, 6), new Pool(1));
+		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1));
 		Lottory lotto539 = new Lottory(new Pool(39, 5));
 		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1));
 		app.manager.addLottory(LottoryType.BigLotto, bigLotto);
@@ -19,7 +19,7 @@ public class Test {
 		app.manager.addLottory(LottoryType.SuperLotto, superlotto);
 
 		// original order
-		app.manager.getLottory(LottoryType.BigLotto).getMainPoolNumbers().stream()
+		app.manager.getLottory(LottoryType.BigLotto).getDefaultPoolOriginNumbers().stream()
 				.forEach(x -> System.out.print(" " + x));
 
 		// shuffle order
@@ -27,7 +27,7 @@ public class Test {
 		app.manager.shuffle(LottoryType.Lotto539);
 		app.manager.shuffle(LottoryType.SuperLotto);
 		System.out.println();
-		app.manager.getLottory(LottoryType.BigLotto).getMainPoolNumbers().stream()
+		app.manager.getLottory(LottoryType.BigLotto).getDefaultPoolOriginNumbers().stream()
 				.forEach(x -> System.out.print(" " + x));
 		// draw
 		System.out.println();
@@ -44,8 +44,8 @@ public class Test {
 //		app.manager.draw(LottoryType.BigLotto);
 //		app.manager.draw(LottoryType.BigLotto);
 //		app.manager.draw(LottoryType.BigLotto);
-		app.manager.draw(LottoryType.BigLotto);
-		app.manager.getLottory(LottoryType.BigLotto).testPrint();
+		app.manager.draw(LottoryType.Lotto539);
+		app.manager.getLottory(LottoryType.Lotto539).testPrint();
 	}
 
 }

@@ -8,7 +8,6 @@ import com.simplelottory.model.Pool;
 
 public abstract class LottoryDraw {
 	public int default_draw(List<Pool> pools) {
-		System.out.println("default draw test");
 		int draw = -1;
 		for (Pool pool : pools) {
 			try {

@@ -54,7 +54,6 @@ public class Pool {
 	}
 
 	public int draw() {
-		System.out.println("Pool draw test");
 		if (this.drew_numbers.size() >= this.draw_max_limit) {
 			throw new MaxLimitException(this.drew_numbers.size());
 		}

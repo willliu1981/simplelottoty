@@ -52,7 +52,7 @@ public class Lottory {
 		}
 	}
 
-	public Pool getPool() {
+	public Pool getDefaultPool() {
 		return this.getPool(0);
 	}
 
@@ -60,14 +60,32 @@ public class Lottory {
 		return this.pools.get(index);
 	}
 
-	public List<Integer> getMainPoolNumbers() {
-		return this.getPool().getOriginNumbers();
+	public List<Integer> getDefaultPoolOriginNumbers() {
+		return this.getOriginNumbers(0);
+	}
+
+	public List<Integer> getDefaultPoolDrewNumbers() {
+		return this.getDrewNumbers(0);
+	}
+
+	public List<Integer> getOriginNumbers(int pool_index) {
+		return this.pools.get(pool_index).getOriginNumbers();
+	}
+
+	public List<Integer> getDrewNumbers(int pool_index) {
+		return this.pools.get(pool_index).getDrewNumbers();
 	}
 
 	public void testPrint() {
 		for (Pool pool : this.pools) {
 			pool.getDrewNumbers().forEach(x -> System.out.print(" " + x));
 			System.out.println();
+		}
+	}
+	
+	public void reset() {
+		for(Pool pool:this.pools) {
+			pool.reset();
 		}
 	}
 }
