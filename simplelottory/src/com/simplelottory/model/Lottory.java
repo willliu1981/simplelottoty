@@ -16,7 +16,7 @@ public class Lottory {
 		for (Pool pool : pools) {
 			this.pools.add(pool);
 		}
-		//create default draw
+		// create default draw
 		draw = new LottoryDraw() {
 			@Override
 			public int draw(List<Pool> pools) {
@@ -27,7 +27,7 @@ public class Lottory {
 
 	public Lottory(LottoryDraw draw, Pool... pools) {
 		this(pools);
-		//override default draw
+		// override default draw
 		this.draw = draw;
 	}
 
@@ -84,6 +84,16 @@ public class Lottory {
 			pool.getDrewNumbers().forEach(x -> System.out.print(" " + x));
 			System.out.println();
 		}
+	}
+
+	public String getInfo() {
+		return this.getDefaultInfo();
+	}
+
+	protected String getDefaultInfo() {
+		StringBuilder sb = new StringBuilder();
+		this.getDefaultPoolDrewNumbers() .forEach(x -> sb.append(" " + x));
+		return sb.toString();
 	}
 
 	public void reset() {

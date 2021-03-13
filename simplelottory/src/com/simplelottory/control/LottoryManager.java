@@ -10,7 +10,7 @@ public class LottoryManager {
 	private Map<String, Lottory> lottos;
 
 	public enum LottoryType {
-		BigLotto("biglotto"), SuperLotto("superlotto"), Lotto539("lotto539");
+		BigLotto("BigLotto"), SuperLotto("SuperLotto"), Lotto539("Lotto539");
 
 		private String type;
 
@@ -81,5 +81,9 @@ public class LottoryManager {
 
 	public void resetAll() {
 		this.lottos.values().forEach(Lottory::reset);
+	}
+
+	public void showDrewLottoryInfo(LottoryType type) {
+		System.out.println(this.getLottory(type).getInfo());
 	}
 }

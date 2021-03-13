@@ -39,11 +39,22 @@ public class SimpleLottory {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String read;
 		System.out.println("App start...");
-		System.out.format("Choose Lottory %s=BigLotto %s=SuperLotto %s=Lotto539\n: ", Type_BigLotto, Type_SuperLotto,
-				Type_Lotto539);
+		tip();
 		try {
 			while ((read = br.readLine()) != null) {
-				System.out.println(lottory_type_map.get(read));
+				LottoryType type;
+				System.out.println(type = lottory_type_map.get(read));
+				manager.draw(type);
+				System.out.print(type + ":\t");
+				manager.showDrewLottoryInfo(type);
+				System.out.println("\nContinue Y/N?\n: ");
+				read = br.readLine();
+				if (read.equalsIgnoreCase("y")) {
+					tip();
+				} else if (read.equalsIgnoreCase("n")) {
+					System.out.println("Goodbye");
+					break;
+				}
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -52,12 +63,31 @@ public class SimpleLottory {
 	}
 
 	public static void init() {
-		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(7, 6), new Pool(1));
+		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
+			@Override
+			public String getInfo() {
+				StringBuilder sb = new StringBuilder();
+				this.getPool(1).getDrewNumbers().forEach(x -> sb.append(" " + x));
+				return super.getInfo() + "\tpecial number:" + sb.toString();
+			}
+		};
 		Lottory lotto539 = new Lottory(new Pool(39, 5));
-		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1));
+		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1)) {
+			@Override
+			public String getInfo() {
+				StringBuilder sb = new StringBuilder();
+				this.getPool(1).getDrewNumbers().forEach(x -> sb.append(" " + x));
+				return super.getInfo() + "\tSec.Area number:" + sb.toString();
+			}
+		};
 		manager.addLottory(LottoryType.BigLotto, bigLotto);
 		manager.addLottory(LottoryType.Lotto539, lotto539);
 		manager.addLottory(LottoryType.SuperLotto, superlotto);
 		manager.shuffleAll();
+	}
+
+	public static void tip() {
+		System.out.format("Choose Lottory %s=BigLotto %s=SuperLotto %s=Lotto539\n: ", Type_BigLotto, Type_SuperLotto,
+				Type_Lotto539);
 	}
 }
