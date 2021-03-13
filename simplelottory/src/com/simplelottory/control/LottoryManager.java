@@ -20,7 +20,7 @@ public class LottoryManager {
 		public String getType() {
 			return this.type;
 		}
-		
+
 		public String toString() {
 			return this.type;
 		}
@@ -33,7 +33,7 @@ public class LottoryManager {
 	public void addLottory(String name, Lottory lottory) {
 		this.lottos.put(name, lottory);
 	}
-	
+
 	public void addLottory(LottoryType type, Lottory lottory) {
 		this.addLottory(type.getType(), lottory);
 	}
@@ -41,13 +41,19 @@ public class LottoryManager {
 	public void shuffle(String name) {
 		this.lottos.get(name).shuffle();
 	}
+
 	public void shuffle(LottoryType type) {
 		this.shuffle(type.getType());
+	}
+
+	public int draw(LottoryType type) {
+		return this.lottos.get(type.getType()).draw();
 	}
 
 	public Lottory getLottory(String name) {
 		return this.lottos.get(name);
 	}
+
 	public Lottory getLottory(LottoryType type) {
 		return this.getLottory(type.getType());
 	}

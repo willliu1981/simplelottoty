@@ -1,5 +1,6 @@
 package com.simplelottory.test;
 
+import com.simplelottory.control.BigLottoDraw;
 import com.simplelottory.control.LottoryManager;
 import com.simplelottory.control.LottoryManager.LottoryType;
 import com.simplelottory.control.SimpleLottory;
@@ -11,8 +12,10 @@ public class Test {
 	public static void main(String[] args) {
 		SimpleLottory app = new SimpleLottory();
 
-		Lottory bigLotto = new Lottory(new Pool(49, 6)) {};
-		Lottory lotto539 = new Lottory(new Pool(39, 5)) {};
+		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6)) {
+		};
+		Lottory lotto539 = new Lottory(new Pool(39, 5)) {
+		};
 		app.manager.addLottory(LottoryType.BigLotto, bigLotto);
 		app.manager.addLottory(LottoryType.Lotto539, lotto539);
 
@@ -25,6 +28,10 @@ public class Test {
 		System.out.println();
 		app.manager.getLottory(LottoryType.BigLotto).getMainPoolNumbers().stream()
 				.forEach(x -> System.out.print(" " + x));
+		//draw
+		System.out.println();
+		app.manager.draw(LottoryType.BigLotto);
+		app.manager.draw(LottoryType.Lotto539);
 	}
 
 }

@@ -1,7 +1,17 @@
 package com.simplelottory.excpetion;
 
 public class MaxLimitException extends RuntimeException {
+	private static final String default_message = "Exceed max limit";
+
 	public MaxLimitException() {
-		super("Exceed max limit");
+		this(default_message);
+	}
+
+	public MaxLimitException(String message) {
+		super(message);
+	}
+
+	public MaxLimitException(int max) {
+		super(default_message + ":" + max);
 	}
 }

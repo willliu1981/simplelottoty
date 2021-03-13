@@ -3,16 +3,29 @@ package com.simplelottory.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.simplelottory.control.LottoryDraw;
 import com.simplelottory.excpetion.MaxLimitException;
 
 public abstract class Lottory {
 	private List<Pool> pools;
+	private LottoryDraw draw = new LottoryDraw() {
+		@Override
+		public int draw() {
+			System.out.println("default draw test");
+			return 0;
+		}
+	};
 
 	public Lottory(Pool... pools) {
 		this.pools = new ArrayList<>();
 		for (Pool pool : pools) {
 			this.pools.add(pool);
 		}
+	}
+
+	public Lottory(LottoryDraw draw, Pool... pools) {
+		this(pools);
+		this.draw = draw;
 	}
 
 	public int getMaxNumber() {
@@ -23,8 +36,13 @@ public abstract class Lottory {
 		return this.pools.get(index).getNumbersSize();
 	}
 
-	public int draw() {
+	public void SetLottoryDraw(LottoryDraw draw) {
+		this.draw = draw;
+	}
 
+	public int draw() {
+		this.pools.get(0).draw();
+		this.draw.draw();
 		return 0;
 	}
 

@@ -13,6 +13,7 @@ public class Pool {
 
 	public Pool(int max_count, int selected_max_limit) {
 		this.origin_numbers = new ArrayList<>();
+		this.selected_numbers = new ArrayList<>();
 		this.selected_max_limit = selected_max_limit;
 		this.createPool(max_count);
 	}
@@ -37,10 +38,15 @@ public class Pool {
 
 	public int draw() {
 		if (this.selected_numbers.size() >= this.selected_max_limit) {
-			throw new MaxLimitException();
+			throw new MaxLimitException(this.selected_numbers.size());
 		}
 		int draw;
 		this.selected_numbers.add(draw = this.origin_numbers.remove(0));
 		return draw;
+	}
+
+	public void reset() {
+		this.origin_numbers.addAll(this.selected_numbers);
+		this.selected_numbers.clear();
 	}
 }
