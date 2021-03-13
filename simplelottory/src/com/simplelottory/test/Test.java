@@ -11,7 +11,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		SimpleLottory app = new SimpleLottory();
-		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(0, 1));
+		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(7, 6), new Pool(1));
 		Lottory lotto539 = new Lottory(new Pool(39, 5));
 		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1));
 		app.manager.addLottory(LottoryType.BigLotto, bigLotto);
