@@ -76,11 +76,13 @@ public class LottoryManager {
 	}
 
 	public void reset(LottoryType type) {
-		this.lottos.get(type).reset();
+		this.getLottory(type) .reset();
+		this.shuffle(type);
 	}
 
 	public void resetAll() {
 		this.lottos.values().forEach(Lottory::reset);
+		this.shuffleAll();
 	}
 
 	public void showDrewLottoryInfo(LottoryType type) {

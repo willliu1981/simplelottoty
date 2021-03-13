@@ -28,32 +28,37 @@ public class SimpleLottory {
 
 	public static void main(String s[]) {
 		init();
-		/*
-		 * manager.draw(LottoryType.BigLotto);
-		 * System.out.println(manager.getLottory(LottoryType.BigLotto).getDrewNumbers(0)
-		 * );
-		 * System.out.println(manager.getLottory(LottoryType.BigLotto).getDrewNumbers(1)
-		 * );
-		 *///
-
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String read;
 		System.out.println("App start...");
 		tip();
 		try {
-			while ((read = br.readLine()) != null) {
+			out: while (true) {
+				read = br.readLine();
+				if (read == null || !lottory_type_map.containsKey(read)) {
+					System.out.println("Input is not legal");
+					continue;
+				}
 				LottoryType type;
 				System.out.println(type = lottory_type_map.get(read));
 				manager.draw(type);
-				System.out.print(type + ":\t");
+				System.out.print(type + ":    ");
 				manager.showDrewLottoryInfo(type);
 				System.out.println("\nContinue Y/N?\n: ");
-				read = br.readLine();
-				if (read.equalsIgnoreCase("y")) {
-					tip();
-				} else if (read.equalsIgnoreCase("n")) {
-					System.out.println("Goodbye");
-					break;
+				while (true) {
+					read = br.readLine();
+					if (read == null || (!read.equalsIgnoreCase("y") && !read.equalsIgnoreCase("n"))) {
+						System.out.println("Input is not legal");
+						continue;
+					}
+					if (read.equalsIgnoreCase("y")) {
+						tip();
+						manager.reset(type);
+						break;
+					} else if (read.equalsIgnoreCase("n")) {
+						System.out.println("Goodbye");
+						break out;
+					}
 				}
 			}
 		} catch (IOException e) {
@@ -68,7 +73,7 @@ public class SimpleLottory {
 			public String getInfo() {
 				StringBuilder sb = new StringBuilder();
 				this.getPool(1).getDrewNumbers().forEach(x -> sb.append(" " + x));
-				return super.getInfo() + "\tpecial number:" + sb.toString();
+				return super.getInfo() + "    pecial number:" + sb.toString();
 			}
 		};
 		Lottory lotto539 = new Lottory(new Pool(39, 5));
@@ -77,7 +82,7 @@ public class SimpleLottory {
 			public String getInfo() {
 				StringBuilder sb = new StringBuilder();
 				this.getPool(1).getDrewNumbers().forEach(x -> sb.append(" " + x));
-				return super.getInfo() + "\tSec.Area number:" + sb.toString();
+				return super.getInfo() + "    Sec.Area number:" + sb.toString();
 			}
 		};
 		manager.addLottory(LottoryType.BigLotto, bigLotto);
