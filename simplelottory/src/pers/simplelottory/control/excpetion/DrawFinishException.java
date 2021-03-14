@@ -1,4 +1,4 @@
-package com.simplelottory.excpetion;
+package pers.simplelottory.control.excpetion;
 
 public class DrawFinishException extends RuntimeException {
 	private static final String default_message = "Draw Finish";

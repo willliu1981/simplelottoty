@@ -1,11 +1,11 @@
-package com.simplelottory.model;
+package pers.simplelottory.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.simplelottory.control.LottoryDraw;
-import com.simplelottory.excpetion.DrawFinishException;
-import com.simplelottory.excpetion.MaxLimitException;
+import pers.simplelottory.control.LottoryDraw;
+import pers.simplelottory.control.excpetion.DrawFinishException;
+import pers.simplelottory.control.excpetion.MaxLimitException;
 
 public class Lottory {
 	private List<Pool> pools;
@@ -16,6 +16,7 @@ public class Lottory {
 		for (Pool pool : pools) {
 			this.pools.add(pool);
 		}
+		
 		// create default draw
 		draw = new LottoryDraw() {
 			@Override

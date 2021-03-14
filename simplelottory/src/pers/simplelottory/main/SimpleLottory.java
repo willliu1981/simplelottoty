@@ -1,4 +1,4 @@
-package com.simplelottory.main;
+package pers.simplelottory.main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,11 +6,11 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.simplelottory.control.BigLottoDraw;
-import com.simplelottory.control.LottoryManager;
-import com.simplelottory.control.LottoryManager.LottoryType;
-import com.simplelottory.model.Lottory;
-import com.simplelottory.model.Pool;
+import pers.simplelottory.control.BigLottoDraw;
+import pers.simplelottory.control.LottoryManager;
+import pers.simplelottory.control.LottoryManager.LottoryType;
+import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Pool;
 
 /*
  * main class
@@ -26,8 +26,8 @@ public class SimpleLottory {
 		lottory_type_map.put(Type_BigLotto, LottoryType.BigLotto);
 		lottory_type_map.put(Type_SuperLotto, LottoryType.SuperLotto);
 		lottory_type_map.put(Type_Lotto539, LottoryType.Lotto539);
-		lottory_type_map.put(Type_Lotto24, LottoryType.Lotto24);
-		lottory_type_map.put(Type_Bingo, LottoryType.BingoBingo);
+		lottory_type_map.put(Type_Lotto24, LottoryType.Lotto24half);
+		lottory_type_map.put(Type_Bingo, LottoryType.Bingo);
 	}
 
 	public static LottoryManager manager = new LottoryManager();
@@ -44,7 +44,11 @@ public class SimpleLottory {
 				/*
 				 * if illegal
 				 */
-				if (read == null || !lottory_type_map.containsKey(read)) {
+//				if (read == null || !lottory_type_map.containsKey(read)) {
+//					System.out.println("Input is not legal");
+//					continue;
+//				}
+				if (read == null || !LottoryType.containsValue(read)) {
 					System.out.println("Input is not legal");
 					continue;
 				}
@@ -85,19 +89,24 @@ public class SimpleLottory {
 				return super.getPrimalInfo() + "    Sec.Area number:" + sb.toString();
 			}
 		};
-		Lottory lotto24 = new Lottory(new Pool(24, 12));
+		Lottory lotto24half = new Lottory(new Pool(24, 12));
 		Lottory bingo = new Lottory(new Pool(80, 20));
-		manager.addLottory(LottoryType.BigLotto, bigLotto);
-		manager.addLottory(LottoryType.Lotto539, lotto539);
-		manager.addLottory(LottoryType.SuperLotto, superlotto);
-		manager.addLottory(LottoryType.Lotto24, lotto24);
-		manager.addLottory(LottoryType.BingoBingo, bingo);
+		manager.addLottory(bigLotto, LottoryType.BigLotto);
+		manager.addLottory(lotto539, LottoryType.Lotto539);
+		manager.addLottory(superlotto, LottoryType.SuperLotto);
+		manager.addLottory(lotto24half, LottoryType.Lotto24half);
+		manager.addLottory(bingo, LottoryType.Bingo);
 		manager.shuffleAll();
 	}
 
 	public static void tip() {
-		System.out.format("%s=BigLotto %s=SuperLotto %s=Lotto539 %s=Lotto539 %s=Bingo\n: ", Type_BigLotto,
-				Type_SuperLotto, Type_Lotto539, Type_Lotto24, Type_Bingo);
+		StringBuilder sb = new StringBuilder();
+		sb.append(LottoryType.BigLotto.getValue() + "=" + LottoryType.BigLotto+" ");
+		sb.append(LottoryType.SuperLotto.getValue() + "=" + LottoryType.SuperLotto+" ");
+		sb.append(LottoryType.Lotto539.getValue() + "=" + LottoryType.Lotto539+" ");
+		sb.append(LottoryType.Lotto24half.getValue() + "=" + LottoryType.Lotto24half+" ");
+		sb.append(LottoryType.Bingo.getValue() + "=" + LottoryType.Bingo+" ");
+		System.out.println(sb);
 	}
 
 	public static boolean askContinue(BufferedReader br, LottoryType type) throws IOException {

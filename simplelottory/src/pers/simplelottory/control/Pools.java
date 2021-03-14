@@ -1,6 +1,6 @@
-package com.simplelottory.control;
+package pers.simplelottory.control;
 
-import com.simplelottory.model.Pool;
+import pers.simplelottory.model.Pool;
 
 public class Pools {
 	public static boolean setSameOriginNumbers(Pool this_pool, Pool other_pool) {

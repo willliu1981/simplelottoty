@@ -1,10 +1,10 @@
-package com.simplelottory.control;
+package pers.simplelottory.control;
 
 import java.util.List;
 
-import com.simplelottory.excpetion.DrawFinishException;
-import com.simplelottory.excpetion.MaxLimitException;
-import com.simplelottory.model.Pool;
+import pers.simplelottory.control.excpetion.DrawFinishException;
+import pers.simplelottory.control.excpetion.MaxLimitException;
+import pers.simplelottory.model.Pool;
 
 public abstract class LottoryDraw {
 	public int default_draw(List<Pool> pools) {

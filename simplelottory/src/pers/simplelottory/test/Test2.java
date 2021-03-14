@@ -1,9 +1,9 @@
-package com.simplelottory.test;
+package pers.simplelottory.test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.simplelottory.control.LottoryManager.LottoryType;
+import pers.simplelottory.control.LottoryManager.LottoryType;
 
 public class Test2 {
 	public static void main(String s[]) {
@@ -11,5 +11,7 @@ public class Test2 {
 				LottoryType.BigLotto);
 		
 		System.out.println(lottory_type_map.get("1"));
+		
+		
 	}
 }

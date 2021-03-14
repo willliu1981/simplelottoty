@@ -1,11 +1,11 @@
-package com.simplelottory.model;
+package pers.simplelottory.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.simplelottory.excpetion.FailedLogicException;
-import com.simplelottory.excpetion.MaxLimitException;
+import pers.simplelottory.control.excpetion.FailedLogicException;
+import pers.simplelottory.control.excpetion.MaxLimitException;
 
 public class Pool {
 	private List<Integer> origin_numbers;

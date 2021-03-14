@@ -1,31 +1,48 @@
-package com.simplelottory.control;
+package pers.simplelottory.control;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.simplelottory.excpetion.DrawFinishException;
-import com.simplelottory.model.Lottory;
+import pers.simplelottory.control.excpetion.DrawFinishException;
+import pers.simplelottory.model.Lottory;
 
 public class LottoryManager {
 	private Map<String, Lottory> lottos;
 
 	public enum LottoryType {
-		BigLotto("BigLotto"), SuperLotto("SuperLotto"), Lotto539("Lotto539"), Lotto24("Lotto24"),
-		BingoBingo("BingoBingo");
+		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),
+		Lotto24half("Lotto24half", "4"), Bingo("BingoBingo", "5");
 
 		private String type;
+		private String value;
 
-		LottoryType(String type) {
+		LottoryType(String type, String value) {
 			this.type = type;
+			this.value = value;
 		}
 
 		public String getType() {
 			return this.type;
 		}
 
+		public String getValue() {
+			return this.value;
+		}
+
 		public String toString() {
 			return this.type;
+		}
+
+		public static LottoryType find(String value) {
+			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.value.equalsIgnoreCase(value)).findFirst()
+					.get();
+		}
+
+		public static boolean containsValue(String value) {
+			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.value.equalsIgnoreCase(value)).findFirst()
+					.isPresent();
 		}
 	}
 
@@ -33,12 +50,12 @@ public class LottoryManager {
 		lottos = new HashMap<>();
 	}
 
-	public void addLottory(String name, Lottory lottory) {
+	public void addLottory(Lottory lottory, String name) {
 		this.lottos.put(name, lottory);
 	}
 
-	public void addLottory(LottoryType type, Lottory lottory) {
-		this.addLottory(type.getType(), lottory);
+	public void addLottory(Lottory lottory, LottoryType type) {
+		this.addLottory(lottory, type.getType());
 	}
 
 	public void shuffle(String name) {

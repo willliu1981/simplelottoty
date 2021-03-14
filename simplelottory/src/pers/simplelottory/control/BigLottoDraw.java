@@ -1,8 +1,8 @@
-package com.simplelottory.control;
+package pers.simplelottory.control;
 
 import java.util.List;
 
-import com.simplelottory.model.Pool;
+import pers.simplelottory.model.Pool;
 
 public class BigLottoDraw extends LottoryDraw {
 

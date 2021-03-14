@@ -1,11 +1,11 @@
-package com.simplelottory.test;
+package pers.simplelottory.test;
 
-import com.simplelottory.control.BigLottoDraw;
-import com.simplelottory.control.LottoryManager;
-import com.simplelottory.control.LottoryManager.LottoryType;
-import com.simplelottory.main.SimpleLottory;
-import com.simplelottory.model.Lottory;
-import com.simplelottory.model.Pool;
+import pers.simplelottory.control.BigLottoDraw;
+import pers.simplelottory.control.LottoryManager;
+import pers.simplelottory.control.LottoryManager.LottoryType;
+import pers.simplelottory.main.SimpleLottory;
+import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Pool;
 
 public class Test {
 
@@ -14,9 +14,9 @@ public class Test {
 		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1));
 		Lottory lotto539 = new Lottory(new Pool(39, 5));
 		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1));
-		app.manager.addLottory(LottoryType.BigLotto, bigLotto);
-		app.manager.addLottory(LottoryType.Lotto539, lotto539);
-		app.manager.addLottory(LottoryType.SuperLotto, superlotto);
+		app.manager.addLottory(bigLotto, LottoryType.BigLotto);
+		app.manager.addLottory(lotto539, LottoryType.Lotto539);
+		app.manager.addLottory(superlotto, LottoryType.SuperLotto);
 
 		// original order
 		app.manager.getLottory(LottoryType.BigLotto).getDefaultPoolOriginNumbers().stream()
