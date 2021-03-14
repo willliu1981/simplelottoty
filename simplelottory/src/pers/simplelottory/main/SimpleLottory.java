@@ -32,7 +32,7 @@ public class SimpleLottory {
 				 * if illegal
 				 */
 				if (read == null || !LottoryType.containsValue(read)) {
-					System.out.println("Input is not legal");
+					System.out.println("Illegal inputs");
 					continue;
 				}
 
@@ -44,7 +44,7 @@ public class SimpleLottory {
 				manager.draw(type);
 				System.out.print("]\nResult:\n" + type + "=   ");
 				manager.showDrewLottoryInfo(type);
-				System.out.print("sort=  ");
+				System.out.print("Sorted=  ");
 				manager.showDrewLottorySortedInfo(type);
 
 				System.out.println("\nContinue Y/N?\n: ");
@@ -62,7 +62,7 @@ public class SimpleLottory {
 			@Override
 			public String getPrimalInfo() {
 				StringBuilder sb = new StringBuilder();
-				this.getPool(1).getDrewNumbers().forEach(x -> sb.append(" " + x));
+				this.getDrewNumbers(1).forEach(x -> sb.append(" " + x));
 				return super.getPrimalInfo() + "    special number:" + sb.toString();
 			}
 		};
@@ -71,12 +71,13 @@ public class SimpleLottory {
 			@Override
 			public String getPrimalInfo() {
 				StringBuilder sb = new StringBuilder();
-				this.getPool(1).getDrewNumbers().forEach(x -> sb.append(" " + x));
+				this.getDrewNumbers(1).forEach(x -> sb.append(" " + x));
 				return super.getPrimalInfo() + "    Second Area number:" + sb.toString();
 			}
 		};
 		Lottory lotto24half = new Lottory(new Pool(24, 12));
 		Lottory bingo = new Lottory(new Pool(80, 20));
+		
 		manager.addLottory(bigLotto, LottoryType.BigLotto);
 		manager.addLottory(lotto539, LottoryType.Lotto539);
 		manager.addLottory(superlotto, LottoryType.SuperLotto);
@@ -104,7 +105,7 @@ public class SimpleLottory {
 			 * if illegal
 			 */
 			if (read == null || (!read.equalsIgnoreCase("y") && !read.equalsIgnoreCase("n"))) {
-				System.out.println("Input is not legal");
+				System.out.println("Illegal inputs");
 				continue;
 			}
 

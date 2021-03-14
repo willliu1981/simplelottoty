@@ -9,7 +9,7 @@ import pers.simplelottory.control.excpetion.DrawFinishException;
 import pers.simplelottory.model.Lottory;
 
 public class LottoryManager {
-	private Map<String, Lottory> lottos;
+	protected Map<String, Lottory> lottos;
 
 	public enum LottoryType {
 		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),

@@ -77,7 +77,7 @@ public class Lottory {
 	}
 
 	public List<Integer> getDrewNumbers(int pool_index) {
-		return this.pools.get(pool_index).getDrewNumbers();
+		return this.getPool(pool_index) .getDrewNumbers();
 	}
 
 	public void testPrint() {
