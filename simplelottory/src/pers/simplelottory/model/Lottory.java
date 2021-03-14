@@ -87,6 +87,9 @@ public class Lottory {
 		}
 	}
 
+	/*
+	 * unsorted info
+	 */
 	public String getPrimalInfo() {
 		return this.getDefaultInfo(false);
 	}

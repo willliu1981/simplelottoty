@@ -108,7 +108,7 @@ public class LottoryManager {
 		System.out.println(this.getLottory(type).getPrimalInfo());
 	}
 
-	public void showDrewSortedLottoryInfo(LottoryType type) {
+	public void showDrewLottorySortedInfo(LottoryType type) {
 		System.out.println(this.getLottory(type).getSortedInfo());
 	}
 

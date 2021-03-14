@@ -45,7 +45,7 @@ public class SimpleLottory {
 				System.out.print("]\nResult:\n" + type + "=   ");
 				manager.showDrewLottoryInfo(type);
 				System.out.print("sort=  ");
-				manager.showDrewSortedLottoryInfo(type);
+				manager.showDrewLottorySortedInfo(type);
 
 				System.out.println("\nContinue Y/N?\n: ");
 				if (!askContinue(br, type)) {
@@ -63,7 +63,7 @@ public class SimpleLottory {
 			public String getPrimalInfo() {
 				StringBuilder sb = new StringBuilder();
 				this.getPool(1).getDrewNumbers().forEach(x -> sb.append(" " + x));
-				return super.getPrimalInfo() + "    pecial number:" + sb.toString();
+				return super.getPrimalInfo() + "    special number:" + sb.toString();
 			}
 		};
 		Lottory lotto539 = new Lottory(new Pool(39, 5));
@@ -72,7 +72,7 @@ public class SimpleLottory {
 			public String getPrimalInfo() {
 				StringBuilder sb = new StringBuilder();
 				this.getPool(1).getDrewNumbers().forEach(x -> sb.append(" " + x));
-				return super.getPrimalInfo() + "    Sec.Area number:" + sb.toString();
+				return super.getPrimalInfo() + "    Second Area number:" + sb.toString();
 			}
 		};
 		Lottory lotto24half = new Lottory(new Pool(24, 12));
