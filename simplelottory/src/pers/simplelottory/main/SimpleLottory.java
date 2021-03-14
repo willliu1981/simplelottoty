@@ -57,7 +57,7 @@ public class SimpleLottory {
 		}
 	}
 
-	public static void init() {
+	private static void init() {
 		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
 			@Override
 			public String getPrimalInfo() {

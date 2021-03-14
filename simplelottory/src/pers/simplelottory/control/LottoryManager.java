@@ -9,7 +9,7 @@ import pers.simplelottory.control.excpetion.DrawFinishException;
 import pers.simplelottory.model.Lottory;
 
 public class LottoryManager {
-	protected Map<String, Lottory> lottos;
+	protected Map<String, Lottory> mapLottos;//Map<define name , class type Lottory>
 
 	public enum LottoryType {
 		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),
@@ -47,11 +47,11 @@ public class LottoryManager {
 	}
 
 	public LottoryManager() {
-		lottos = new HashMap<>();
+		mapLottos = new HashMap<>();
 	}
 
 	public void addLottory(Lottory lottory, String name) {
-		this.lottos.put(name, lottory);
+		this.mapLottos.put(name, lottory);
 	}
 
 	public void addLottory(Lottory lottory, LottoryType type) {
@@ -67,7 +67,7 @@ public class LottoryManager {
 	}
 
 	public void shuffleAll() {
-		this.lottos.values().forEach(x -> x.shuffle());
+		this.mapLottos.values().forEach(x -> x.shuffle());
 	}
 
 	public int drawOnce(LottoryType type) throws DrawFinishException {
@@ -87,7 +87,7 @@ public class LottoryManager {
 	}
 
 	public Lottory getLottory(String name) {
-		return this.lottos.get(name);
+		return this.mapLottos.get(name);
 	}
 
 	public Lottory getLottory(LottoryType type) {
@@ -100,7 +100,7 @@ public class LottoryManager {
 	}
 
 	public void resetAll() {
-		this.lottos.values().forEach(Lottory::reset);
+		this.mapLottos.values().forEach(Lottory::reset);
 		this.shuffleAll();
 	}
 
