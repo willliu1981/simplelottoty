@@ -3,6 +3,7 @@ package pers.simplelottory.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import pers.simplelottory.control.Inputs;
 import pers.simplelottory.control.LottoryManager.LottoryType;
 
 public class Test6 {
@@ -16,6 +17,8 @@ public class Test6 {
 		System.out.println(type.toString()==type.getDefineName());
 		System.out.println(map.get(type));//<<bug ??
 		System.out.println(map.get(type.getDefineName()));
+		
+		System.out.println(Inputs.tip()) ;
 	}
 
 }

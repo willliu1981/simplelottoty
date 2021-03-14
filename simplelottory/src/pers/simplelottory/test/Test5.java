@@ -21,16 +21,20 @@ public class Test5 {
 				this.getDrewNumbers(1).forEach(x -> sb.append(" " + x));
 				return super.getPrimalInfo() + "    special number:" + sb.toString();
 			}
-		}, LottoryType.BigLotto);
+		}, type);
 
 		for (int i = 0; i < 10; i++) {
-			Lottory lottory = manager.createNewCustomerLottory(LottoryType.BigLotto);
+			Lottory lottory = manager.createNewCustomerLottory(type);
 			System.out.println("info:" + lottory.getPrimalInfo());
 		}
 		System.out.println("show...");
-		System.out.println("size:" + manager.getLottories(LottoryType.BigLotto).size());
+		System.out.println("size:" + manager.getLottories(type).size());
 
-		manager.getLottories(LottoryType.BigLotto).forEach(System.out::println);
+		manager.getLottories(type).stream().forEach(System.out::println);
+		manager.reset(type);
+		System.out.println("reset...");
+		manager.createNewCustomerLottory(type);
+		manager.getLottories(type).stream().forEach(System.out::println);
 
 	}
 
