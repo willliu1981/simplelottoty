@@ -1,5 +1,6 @@
 package pers.simplelottory.control;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,12 @@ public class CustomerLottoryManager {
 		master_manager = new LottoryManager();
 		this.mapCustomerLottory = new HashMap<>();
 	}
-	
+
+	public CustomerLottoryManager(LottoryManager master_manager) {
+		this();
+		this.master_manager = master_manager;
+	}
+
 	public void addMasterLottory(Lottory lottory, LottoryType type) {
 		this.master_manager.addLottory(lottory, type);
 	}
@@ -51,6 +57,14 @@ public class CustomerLottoryManager {
 		Lottory draw = Lottories.simpleCopy(this.master_manager.draw(type));
 		this.addLottory(draw, type);
 		return draw;
+	}
+
+	public List<Lottory> createNewCustomerLottoryForNumber(int number, LottoryType type) {
+		List<Lottory> temp = new ArrayList<>();
+		for (int i = 1; i <= number; i++) {
+			temp.add(this.createNewCustomerLottory(type));
+		}
+		return temp;
 	}
 
 	public List<Lottory> getLottories(LottoryType type) {
