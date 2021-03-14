@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import pers.simplelottory.control.App;
 import pers.simplelottory.control.BigLottoDraw;
 import pers.simplelottory.control.LottoryManager;
 import pers.simplelottory.control.LottoryManager.LottoryType;
@@ -17,7 +18,7 @@ import pers.simplelottory.model.Pool;
  */
 public class SimpleLottory {
 
-	public static LottoryManager manager = new LottoryManager();
+	public static LottoryManager manager ;
 
 	public static void main(String s[]) {
 		init();
@@ -58,31 +59,7 @@ public class SimpleLottory {
 	}
 
 	private static void init() {
-		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
-			@Override
-			public String getPrimalInfo() {
-				StringBuilder sb = new StringBuilder();
-				this.getDrewNumbers(1).forEach(x -> sb.append(" " + x));
-				return super.getPrimalInfo() + "    special number:" + sb.toString();
-			}
-		};
-		Lottory lotto539 = new Lottory(new Pool(39, 5));
-		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1)) {
-			@Override
-			public String getPrimalInfo() {
-				StringBuilder sb = new StringBuilder();
-				this.getDrewNumbers(1).forEach(x -> sb.append(" " + x));
-				return super.getPrimalInfo() + "    Second Area number:" + sb.toString();
-			}
-		};
-		Lottory lotto24half = new Lottory(new Pool(24, 12));
-		Lottory bingo = new Lottory(new Pool(80, 20));
-		
-		manager.addLottory(bigLotto, LottoryType.BigLotto);
-		manager.addLottory(lotto539, LottoryType.Lotto539);
-		manager.addLottory(superlotto, LottoryType.SuperLotto);
-		manager.addLottory(lotto24half, LottoryType.Lotto24half);
-		manager.addLottory(bingo, LottoryType.Bingo);
+		manager=App.createDefaultMasterManager();
 		manager.shuffleAll();
 	}
 
