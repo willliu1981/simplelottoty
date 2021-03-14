@@ -28,4 +28,6 @@ public class CustomerLottory  {
 		return this.lottories.get(pointer);
 	}
 	
+	
+	
 }
