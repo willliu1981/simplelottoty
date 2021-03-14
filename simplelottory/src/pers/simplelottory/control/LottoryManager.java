@@ -15,16 +15,16 @@ public class LottoryManager {
 		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),
 		Lotto24half("Lotto24half", "4"), Bingo("BingoBingo", "5");
 
-		private String type;
+		private String defineName;
 		private String value;
 
-		LottoryType(String type, String value) {
-			this.type = type;
+		LottoryType(String defineName, String value) {
+			this.defineName = defineName;
 			this.value = value;
 		}
 
-		public String getType() {
-			return this.type;
+		public String getDefineName() {
+			return this.defineName;
 		}
 
 		public String getValue() {
@@ -32,7 +32,7 @@ public class LottoryManager {
 		}
 
 		public String toString() {
-			return this.type;
+			return this.defineName;
 		}
 
 		public static LottoryType find(String value) {
@@ -55,7 +55,7 @@ public class LottoryManager {
 	}
 
 	public void addLottory(Lottory lottory, LottoryType type) {
-		this.addLottory(lottory, type.getType());
+		this.addLottory(lottory, type.getDefineName());
 	}
 
 	public void shuffle(String name) {
@@ -63,7 +63,7 @@ public class LottoryManager {
 	}
 
 	public void shuffle(LottoryType type) {
-		this.shuffle(type.getType());
+		this.shuffle(type.getDefineName());
 	}
 
 	public void shuffleAll() {
@@ -91,7 +91,7 @@ public class LottoryManager {
 	}
 
 	public Lottory getLottory(LottoryType type) {
-		return this.getLottory(type.getType());
+		return this.getLottory(type.getDefineName());
 	}
 
 	public void reset(LottoryType type) {

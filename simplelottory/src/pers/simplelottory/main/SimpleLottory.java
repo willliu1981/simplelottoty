@@ -16,19 +16,6 @@ import pers.simplelottory.model.Pool;
  * main class
  */
 public class SimpleLottory {
-	public static final String Type_BigLotto = "1";
-	public static final String Type_SuperLotto = "2";
-	public static final String Type_Lotto539 = "3";
-	public static final String Type_Lotto24 = "4";
-	public static final String Type_Bingo = "5";
-	public static final Map<String, LottoryType> lottory_type_map = new HashMap<>();
-	static {
-		lottory_type_map.put(Type_BigLotto, LottoryType.BigLotto);
-		lottory_type_map.put(Type_SuperLotto, LottoryType.SuperLotto);
-		lottory_type_map.put(Type_Lotto539, LottoryType.Lotto539);
-		lottory_type_map.put(Type_Lotto24, LottoryType.Lotto24half);
-		lottory_type_map.put(Type_Bingo, LottoryType.Bingo);
-	}
 
 	public static LottoryManager manager = new LottoryManager();
 
@@ -44,17 +31,16 @@ public class SimpleLottory {
 				/*
 				 * if illegal
 				 */
-//				if (read == null || !lottory_type_map.containsKey(read)) {
-//					System.out.println("Input is not legal");
-//					continue;
-//				}
 				if (read == null || !LottoryType.containsValue(read)) {
 					System.out.println("Input is not legal");
 					continue;
 				}
 
+				/*
+				 * process draw
+				 */
 				LottoryType type;
-				System.out.println((type = lottory_type_map.get(read)) + ": process info[");
+				System.out.println((type = LottoryType.find(read)) + ": process info[");
 				manager.draw(type);
 				System.out.print("]\nResult:\n" + type + "=   ");
 				manager.showDrewLottoryInfo(type);
@@ -101,11 +87,11 @@ public class SimpleLottory {
 
 	public static void tip() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LottoryType.BigLotto.getValue() + "=" + LottoryType.BigLotto+" ");
-		sb.append(LottoryType.SuperLotto.getValue() + "=" + LottoryType.SuperLotto+" ");
-		sb.append(LottoryType.Lotto539.getValue() + "=" + LottoryType.Lotto539+" ");
-		sb.append(LottoryType.Lotto24half.getValue() + "=" + LottoryType.Lotto24half+" ");
-		sb.append(LottoryType.Bingo.getValue() + "=" + LottoryType.Bingo+" ");
+		sb.append(LottoryType.BigLotto.getValue() + "=" + LottoryType.BigLotto + " ");
+		sb.append(LottoryType.SuperLotto.getValue() + "=" + LottoryType.SuperLotto + " ");
+		sb.append(LottoryType.Lotto539.getValue() + "=" + LottoryType.Lotto539 + " ");
+		sb.append(LottoryType.Lotto24half.getValue() + "=" + LottoryType.Lotto24half + " ");
+		sb.append(LottoryType.Bingo.getValue() + "=" + LottoryType.Bingo + " ");
 		System.out.println(sb);
 	}
 
