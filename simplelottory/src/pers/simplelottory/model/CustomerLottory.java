@@ -1,6 +1,9 @@
 package pers.simplelottory.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import pers.simplelottory.control.excpetion.EndOfLottoryListException;
 
 public class CustomerLottory  {
 	protected List<Lottory> lottories;
@@ -8,7 +11,7 @@ public class CustomerLottory  {
 	protected int pointer=0;
 	
 	public CustomerLottory(int period) {
-		
+		lottories=new ArrayList<>();
 	}
 	
 	public int getPointer() {
@@ -25,6 +28,9 @@ public class CustomerLottory  {
 	}
 	
 	public Lottory get() {
+		if(this.pointer>=this.lottories.size()) {
+			throw new EndOfLottoryListException(this.pointer);
+		}
 		return this.lottories.get(pointer);
 	}
 	

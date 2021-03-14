@@ -74,7 +74,7 @@ public class LottoryManager {
 		return this.getLottory(type).draw();
 	}
 
-	public void draw(LottoryType type) {
+	public Lottory draw(LottoryType type) {
 		while (true) {
 			int draw = -1;
 			try {
@@ -84,6 +84,7 @@ public class LottoryManager {
 				break;
 			}
 		}
+		return this.getLottory(type);
 	}
 
 	public Lottory getLottory(String name) {
