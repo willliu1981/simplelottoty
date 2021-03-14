@@ -22,20 +22,20 @@ public class SimpleLottoryCustiomer {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String read;
 		System.out.println("App SimpleLottoryCsutomer start...");
-		System.out.println(Inputs.tip());
 		try {
 			while (true) {
+				System.out.println(Inputs.tip());
 				LottoryType type = askType(br);
 				int num = askCreateQuantity(br);
 				List<Lottory> list = customer_manager.createNewCustomerLottoryForNumber(num, type);
 				System.out.format("%s Add this:\n", type);
 				list.forEach(System.out::println);
-				if(askCreateOther(br)) {
+				if (askCreateOther(br)) {
 					continue;
 				}
-				
+
 				askCreateOther(br);
-				
+
 			}
 		} catch (IOException e) {
 			System.out.println("xxx");
@@ -122,11 +122,20 @@ public class SimpleLottoryCustiomer {
 		return true;
 	}
 
-	private static boolean askCreateOther(BufferedReader br) {
-
-		return false;
+	private static boolean askCreateOther(BufferedReader br) throws IOException {
+		System.out.println("Create other Y/N?");
+		while (true) {
+			if (br.readLine().trim().equalsIgnoreCase("y")) {
+				return true;
+			} else if (br.readLine().trim().equalsIgnoreCase("n")) {
+				return false;
+			} else {
+				System.out.println("Illegal inputs");
+				continue;
+			}
+		}
 	}
-	
+
 	/*
 	 * return result
 	 */
