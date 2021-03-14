@@ -37,5 +37,10 @@ public class CustomerLottory {
 	public List<Lottory> getLottories() {
 		return this.lottories;
 	}
+	
+	public void reset() {
+		this.lottories.clear();
+		this.pointer=0;
+	}
 
 }

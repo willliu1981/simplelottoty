@@ -14,7 +14,7 @@ public class Test5 {
 		System.out.println(type.toString());
 
 		CustomerLottoryManager manager = new CustomerLottoryManager();
-		manager.addLottory(new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
+		manager.addMasterLottory(new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
 			@Override
 			public String getPrimalInfo() {
 				StringBuilder sb = new StringBuilder();
@@ -25,13 +25,13 @@ public class Test5 {
 
 		for (int i = 0; i < 10; i++) {
 			Lottory lottory = manager.createNewCustomerLottory(LottoryType.BigLotto);
-			System.out.println("info:"+lottory.getPrimalInfo());
+			System.out.println("info:" + lottory.getPrimalInfo());
 		}
 		System.out.println("show...");
-		System.out.println("size:" + manager.getElementsOfCustomerLottory(LottoryType.BigLotto).size());
+		System.out.println("size:" + manager.getLottories(LottoryType.BigLotto).size());
 
-		manager.getElementsOfCustomerLottory(LottoryType.BigLotto).forEach(System.out::println);
-		
+		manager.getLottories(LottoryType.BigLotto).forEach(System.out::println);
+
 	}
 
 }

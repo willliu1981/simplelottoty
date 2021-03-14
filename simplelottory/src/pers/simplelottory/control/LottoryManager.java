@@ -9,7 +9,7 @@ import pers.simplelottory.control.excpetion.DrawFinishException;
 import pers.simplelottory.model.Lottory;
 
 public class LottoryManager {
-	protected Map<String, Lottory> mapLottos;//Map<define name , class type Lottory>
+	protected Map<String, Lottory> mapLottory;//Map<define name , class type Lottory>
 
 	public enum LottoryType {
 		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),
@@ -47,11 +47,11 @@ public class LottoryManager {
 	}
 
 	public LottoryManager() {
-		mapLottos = new HashMap<>();
+		mapLottory = new HashMap<>();
 	}
 
 	public void addLottory(Lottory lottory, String name) {
-		this.mapLottos.put(name, lottory);
+		this.mapLottory.put(name, lottory);
 	}
 
 	public void addLottory(Lottory lottory, LottoryType type) {
@@ -67,7 +67,7 @@ public class LottoryManager {
 	}
 
 	public void shuffleAll() {
-		this.mapLottos.values().forEach(x -> x.shuffle());
+		this.mapLottory.values().forEach(x -> x.shuffle());
 	}
 
 	public int drawOnce(LottoryType type) throws DrawFinishException {
@@ -88,7 +88,7 @@ public class LottoryManager {
 	}
 
 	public Lottory getLottory(String name) {
-		return this.mapLottos.get(name);
+		return this.mapLottory.get(name);
 	}
 
 	public Lottory getLottory(LottoryType type) {
@@ -101,7 +101,7 @@ public class LottoryManager {
 	}
 
 	public void resetAll() {
-		this.mapLottos.values().forEach(Lottory::reset);
+		this.mapLottory.values().forEach(Lottory::reset);
 		this.shuffleAll();
 	}
 
