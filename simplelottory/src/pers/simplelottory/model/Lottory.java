@@ -113,4 +113,14 @@ public class Lottory {
 			pool.reset();
 		}
 	}
+	
+	public int getPoolSize() {
+		return this.pools.size();
+	}
+	
+	public String toString() {
+		return this.getPrimalInfo();
+	}
+	
+	
 }

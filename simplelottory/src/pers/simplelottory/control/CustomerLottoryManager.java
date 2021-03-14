@@ -1,6 +1,7 @@
 package pers.simplelottory.control;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import pers.simplelottory.model.CustomerLottory;
@@ -15,13 +16,13 @@ public class CustomerLottoryManager extends LottoryManager {
 	}
 
 	protected void addElementOfCustomerLottory(Lottory lottory, LottoryType type) {
-		this.getCustomerLottory(type) .add(lottory);
+		this.getCustomerLottory(type).add(lottory);
 	}
 
 	protected CustomerLottory getCustomerLottory(LottoryType type) {
 		CustomerLottory cl = null;
-		if (this.lottoriesMap.containsKey(type)) {
-			cl = this.lottoriesMap.get(type);
+		if (this.lottoriesMap.containsKey(type.getDefineName())) {
+			cl = this.lottoriesMap.get(type.getDefineName());
 		} else {
 			cl = new CustomerLottory(period);
 			this.lottoriesMap.put(type.getDefineName(), cl);
@@ -37,11 +38,15 @@ public class CustomerLottoryManager extends LottoryManager {
 		return lottory;
 	}
 
-	public Lottory createNewLottory(LottoryType type) {
-		this.shuffle(type);
-		Lottory draw = this.draw(type);
+	public Lottory createNewCustomerLottory(LottoryType type) {
+		this.reset(type);
+		Lottory draw = Lottories.simpleCopy(this.draw(type));
 		this.addElementOfCustomerLottory(draw, type);
 		return draw;
+	}
+
+	public List<Lottory> getElementsOfCustomerLottory(LottoryType type) {
+		return this.lottoriesMap.get(type.getDefineName()).getLottories();
 	}
 
 }

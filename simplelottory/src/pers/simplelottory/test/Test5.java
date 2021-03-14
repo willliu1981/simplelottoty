@@ -9,6 +9,9 @@ import pers.simplelottory.model.Pool;
 public class Test5 {
 
 	public static void main(String[] args) {
+		LottoryType type = LottoryType.BigLotto;
+		System.out.println(type);
+		System.out.println(type.toString());
 
 		CustomerLottoryManager manager = new CustomerLottoryManager();
 		manager.addLottory(new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
@@ -19,9 +22,16 @@ public class Test5 {
 				return super.getPrimalInfo() + "    special number:" + sb.toString();
 			}
 		}, LottoryType.BigLotto);
-		Lottory lottory = manager.createNewLottory(LottoryType.BigLotto);
-		System.out.println(lottory.getPrimalInfo());
 
+		for (int i = 0; i < 10; i++) {
+			Lottory lottory = manager.createNewCustomerLottory(LottoryType.BigLotto);
+			System.out.println("info:"+lottory.getPrimalInfo());
+		}
+		System.out.println("show...");
+		System.out.println("size:" + manager.getElementsOfCustomerLottory(LottoryType.BigLotto).size());
+
+		manager.getElementsOfCustomerLottory(LottoryType.BigLotto).forEach(System.out::println);
+		
 	}
 
 }
