@@ -44,7 +44,7 @@ public class SimpleLottory {
 				manager.draw(type);
 				System.out.print("]\nResult:\n" + type + "=   ");
 				manager.showDrewLottoryInfo(type);
-				System.out.print("\nsort=  ");
+				System.out.print("sort=  ");
 				manager.showDrewSortedLottoryInfo(type);
 
 				System.out.println("\nContinue Y/N?\n: ");
