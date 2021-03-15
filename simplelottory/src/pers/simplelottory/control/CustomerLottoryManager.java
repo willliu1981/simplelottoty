@@ -59,7 +59,7 @@ public class CustomerLottoryManager {
 		return draw;
 	}
 
-	public List<Lottory> createNewCustomerLottoryForNumber(int number, LottoryType type) {
+	public List<Lottory> createNewCustomerLottoriesForNumber(int number, LottoryType type) {
 		List<Lottory> temp = new ArrayList<>();
 		for (int i = 1; i <= number; i++) {
 			temp.add(this.createNewCustomerLottory(type));

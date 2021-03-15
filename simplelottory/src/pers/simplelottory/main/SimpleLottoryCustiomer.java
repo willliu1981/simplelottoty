@@ -25,7 +25,7 @@ public class SimpleLottoryCustiomer {
 				LottoryType type = askType(br);
 				
 				int num = askCreateQuantity(br);
-				List<Lottory> list = customer_manager.createNewCustomerLottoryForNumber(num, type);
+				List<Lottory> list = customer_manager.createNewCustomerLottoriesForNumber(num, type);
 				System.out.format("%s Add this:\n", type);
 				System.out.println(Outputs.foreach(list, 10));
 				

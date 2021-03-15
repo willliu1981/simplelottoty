@@ -4,6 +4,9 @@ import pers.simplelottory.model.Lottory;
 import pers.simplelottory.model.Pool;
 
 public class Lottories {
+	/*
+	 * Get draw numbers from origin lottory and add in them to new lottory
+	 */
 	public static Lottory simpleCopy(Lottory origin) {
 		Lottory lottory;
 		Pool[] pools = new Pool[origin.getPoolSize()];
