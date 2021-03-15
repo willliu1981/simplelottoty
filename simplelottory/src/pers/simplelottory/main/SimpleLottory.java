@@ -3,15 +3,10 @@ package pers.simplelottory.main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
 
 import pers.simplelottory.control.App;
-import pers.simplelottory.control.BigLottoDraw;
 import pers.simplelottory.control.LottoryManager;
-import pers.simplelottory.model.Lottory;
 import pers.simplelottory.model.Lottory.LottoryType;
-import pers.simplelottory.model.Pool;
 
 /*
  * main class

@@ -175,12 +175,16 @@ public class Lottory {
 		return this.getDrewNumbers(index).size();
 	}
 
-	public String toString() {
-		return this.getPrimalInfo();
-	}
-
 	public LottoryType getType() {
 		return type;
+	}
+
+	public void setPools(Pool[] pools) {
+		this.pools = Arrays.asList(pools);
+	}
+
+	public String toString() {
+		return this.getPrimalInfo();
 	}
 
 }
