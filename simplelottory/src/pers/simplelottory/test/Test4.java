@@ -2,9 +2,9 @@ package pers.simplelottory.test;
 
 import java.util.List;
 
-import pers.simplelottory.control.BigLottoDraw;
+import pers.simplelottory.control.CustomerLottory;
 import pers.simplelottory.control.CustomerLottoryManager;
-import pers.simplelottory.model.CustomerLottory;
+import pers.simplelottory.control.strategy.BigLottoDraw;
 import pers.simplelottory.model.Lottory;
 import pers.simplelottory.model.Pool;
 

@@ -19,7 +19,4 @@ public class Lottories {
 		return lottory;
 	}
 
-	public static void match(Lottory origin, Lottory result) {
-
-	}
 }

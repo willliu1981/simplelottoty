@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pers.simplelottory.model.CustomerLottory;
 import pers.simplelottory.model.Lottory;
 import pers.simplelottory.model.Lottory.LottoryType;
 
@@ -65,6 +64,12 @@ public class CustomerLottoryManager {
 			temp.add(this.createNewCustomerLottory(type));
 		}
 		return temp;
+	}
+
+	public void match(Lottory master) {
+		this.mapCustomerLottory.values().stream().forEach(x -> {
+			x.match(master);
+		});
 	}
 
 	public List<Lottory> getLottories(LottoryType type) {

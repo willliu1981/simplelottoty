@@ -1,7 +1,7 @@
 package pers.simplelottory.test;
 
-import pers.simplelottory.control.BigLottoDraw;
 import pers.simplelottory.control.LottoryManager;
+import pers.simplelottory.control.strategy.BigLottoDraw;
 import pers.simplelottory.main.SimpleLottory;
 import pers.simplelottory.model.Lottory;
 import pers.simplelottory.model.Lottory.LottoryType;

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import pers.simplelottory.control.LottoryDraw;
-import pers.simplelottory.control.LottoryMatch;
 import pers.simplelottory.control.excpetion.DrawFinishException;
+import pers.simplelottory.control.strategy.LottoryDraw;
+import pers.simplelottory.control.strategy.LottoryMatch;
 
 public class Lottory {
 	private List<Pool> pools;
@@ -67,8 +67,8 @@ public class Lottory {
 		// create default match
 		match = new LottoryMatch() {
 			@Override
-			public int match(List<Pool> origin, List<Pool> matchTo) {
-				return this.default_match(origin, matchTo);
+			public int match(List<Pool> origin, List<Pool> master) {
+				return this.default_match(origin, master);
 			}
 		};
 	}
@@ -175,6 +175,14 @@ public class Lottory {
 
 	public void setPools(Pool[] pools) {
 		this.pools = Arrays.asList(pools);
+	}
+
+	public List<Pool> getPools() {
+		return pools;
+	}
+
+	public void match(Lottory master) {
+		this.match.match(this.pools, master.getPools());
 	}
 
 	public String toString() {

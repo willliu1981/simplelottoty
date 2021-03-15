@@ -1,4 +1,4 @@
-package pers.simplelottory.model;
+package pers.simplelottory.control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import pers.simplelottory.control.excpetion.EndOfLottoryListException;
+import pers.simplelottory.model.Lottory;
 
 public class CustomerLottory {
 	protected List<Lottory> lottories;
@@ -47,14 +48,18 @@ public class CustomerLottory {
 		this.pointer = 0;
 	}
 
-	public void addMatchedResult(Lottory origin, Lottory result) {
+	public void addInToMatchedResultMap(Lottory origin, Lottory result) {
 		this.mapResults.put(origin, result);
 	}
 
-	public Lottory getMatchedResult(Lottory lottory) {
+	public Lottory getLottoryFromMatchedResultMap(Lottory lottory) {
 		return this.mapResults.get(lottory);
 	}
-	
-	
+
+	public void match(Lottory master) {
+		this.lottories.forEach(x -> {
+			x.match(master);
+		});
+	}
 
 }

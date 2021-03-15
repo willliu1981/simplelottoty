@@ -1,4 +1,4 @@
-package pers.simplelottory.control;
+package pers.simplelottory.control.strategy;
 
 import java.util.List;
 

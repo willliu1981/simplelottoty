@@ -33,7 +33,7 @@ public class SimpleLottoryCustiomer {
 					continue;
 				}
 
-				askCreateOther(br);
+				matchDrawResult(br);
 
 			}
 		} catch (IOException e) {
