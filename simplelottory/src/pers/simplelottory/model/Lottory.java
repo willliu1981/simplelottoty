@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pers.simplelottory.control.LottoryDraw;
+import pers.simplelottory.control.LottoryMatch;
 import pers.simplelottory.control.excpetion.DrawFinishException;
 import pers.simplelottory.control.excpetion.MaxLimitException;
 
 public class Lottory {
 	private List<Pool> pools;
 	private LottoryDraw draw;
+	private LottoryMatch match;
 
 	public Lottory(Pool... pools) {
 		this.pools = new ArrayList<>();
@@ -22,6 +24,14 @@ public class Lottory {
 			@Override
 			public int draw(List<Pool> pools) {
 				return this.default_draw(pools);
+			}
+		};
+
+		// create default match
+		match = new LottoryMatch() {
+			@Override
+			public int match(List<Pool> origin, List<Pool> matchTo) {
+				return this.default_match(origin, matchTo);
 			}
 		};
 	}
