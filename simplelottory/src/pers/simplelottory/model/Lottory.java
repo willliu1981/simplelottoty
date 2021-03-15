@@ -16,7 +16,7 @@ public class Lottory {
 		for (Pool pool : pools) {
 			this.pools.add(pool);
 		}
-		
+
 		// create default draw
 		draw = new LottoryDraw() {
 			@Override
@@ -77,7 +77,7 @@ public class Lottory {
 	}
 
 	public List<Integer> getDrewNumbers(int pool_index) {
-		return this.getPool(pool_index) .getDrewNumbers();
+		return this.getPool(pool_index).getDrewNumbers();
 	}
 
 	public void testPrint() {
@@ -101,9 +101,15 @@ public class Lottory {
 	protected String getDefaultInfo(boolean sort) {
 		StringBuilder sb = new StringBuilder();
 		if (sort) {
-			this.getDefaultPoolDrewNumbers().stream().sorted().forEach(x -> sb.append(" " + x));
+			this.pools.stream().forEach(x -> {
+				x.getDrewNumbers().stream().sorted().forEach(x2 -> sb.append(x2 + " "));
+				sb.append("  ");
+			});
 		} else {
-			this.getDefaultPoolDrewNumbers().forEach(x -> sb.append(" " + x));
+			this.pools.stream().forEach(x -> {
+				x.getDrewNumbers().stream().forEach(x2 -> sb.append(x2 + " "));
+				sb.append("  ");
+			});
 		}
 		return sb.toString();
 	}
@@ -113,14 +119,17 @@ public class Lottory {
 			pool.reset();
 		}
 	}
-	
+
 	public int getPoolSize() {
 		return this.pools.size();
 	}
-	
+
+	public int getDrewSize(int index) {
+		return this.getDrewNumbers(index).size();
+	}
+
 	public String toString() {
 		return this.getPrimalInfo();
 	}
-	
-	
+
 }

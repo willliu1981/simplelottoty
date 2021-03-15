@@ -18,4 +18,8 @@ public class Lottories {
 		lottory = new Lottory(pools);
 		return lottory;
 	}
+	
+	public static void match(Lottory origin,Lottory result) {
+		
+	}
 }

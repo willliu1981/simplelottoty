@@ -47,12 +47,14 @@ public class CustomerLottory {
 		this.pointer = 0;
 	}
 
-	public void addMatchedResult(Lottory drew_lottory, Lottory result) {
-		this.mapResults.put(drew_lottory, result);
+	public void addMatchedResult(Lottory origin, Lottory result) {
+		this.mapResults.put(origin, result);
 	}
 
 	public Lottory getMatchedResult(Lottory lottory) {
 		return this.mapResults.get(lottory);
 	}
+	
+	
 
 }
