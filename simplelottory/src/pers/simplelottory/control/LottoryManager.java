@@ -7,44 +7,12 @@ import java.util.Map;
 
 import pers.simplelottory.control.excpetion.DrawFinishException;
 import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Lottory.LottoryType;
 
 public class LottoryManager {
 	protected Map<String, Lottory> mapLottory;//Map<define name , class type Lottory>
 
-	public enum LottoryType {
-		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),
-		Lotto24half("Lotto24half", "4"), Bingo("BingoBingo", "5");
-
-		private String defineName;
-		private String value;
-
-		LottoryType(String defineName, String value) {
-			this.defineName = defineName;
-			this.value = value;
-		}
-
-		public String getDefineName() {
-			return this.defineName;
-		}
-
-		public String getValue() {
-			return this.value;
-		}
-
-		public String toString() {
-			return this.defineName;
-		}
-
-		public static LottoryType find(String value) {
-			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.value.equalsIgnoreCase(value)).findFirst()
-					.get();
-		}
-
-		public static boolean containsValue(String value) {
-			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.value.equalsIgnoreCase(value)).findFirst()
-					.isPresent();
-		}
-	}
+	
 
 	public LottoryManager() {
 		mapLottory = new HashMap<>();

@@ -8,8 +8,8 @@ import java.util.List;
 import pers.simplelottory.control.App;
 import pers.simplelottory.control.CustomerLottoryManager;
 import pers.simplelottory.control.Outputs;
-import pers.simplelottory.control.LottoryManager.LottoryType;
 import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Lottory.LottoryType;
 
 public class SimpleLottoryCustiomer {
 

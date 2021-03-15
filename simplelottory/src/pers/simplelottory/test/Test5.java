@@ -2,8 +2,8 @@ package pers.simplelottory.test;
 
 import pers.simplelottory.control.BigLottoDraw;
 import pers.simplelottory.control.CustomerLottoryManager;
-import pers.simplelottory.control.LottoryManager.LottoryType;
 import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Lottory.LottoryType;
 import pers.simplelottory.model.Pool;
 
 public class Test5 {
@@ -14,7 +14,7 @@ public class Test5 {
 		System.out.println(type.toString());
 
 		CustomerLottoryManager manager = new CustomerLottoryManager();
-		manager.addMasterLottory(new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
+		manager.addMasterLottory(new Lottory(LottoryType.BigLotto,new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
 			@Override
 			public String getPrimalInfo() {
 				StringBuilder sb = new StringBuilder();

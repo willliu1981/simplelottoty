@@ -9,8 +9,8 @@ import java.util.Map;
 import pers.simplelottory.control.App;
 import pers.simplelottory.control.BigLottoDraw;
 import pers.simplelottory.control.LottoryManager;
-import pers.simplelottory.control.LottoryManager.LottoryType;
 import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Lottory.LottoryType;
 import pers.simplelottory.model.Pool;
 
 /*

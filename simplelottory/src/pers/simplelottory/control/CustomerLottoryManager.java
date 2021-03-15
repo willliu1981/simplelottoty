@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pers.simplelottory.control.LottoryManager.LottoryType;
 import pers.simplelottory.model.CustomerLottory;
 import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Lottory.LottoryType;
 
 public class CustomerLottoryManager {
 	protected LottoryManager master_manager;

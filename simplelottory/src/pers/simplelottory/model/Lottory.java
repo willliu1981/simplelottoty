@@ -1,23 +1,60 @@
 package pers.simplelottory.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import pers.simplelottory.control.LottoryDraw;
 import pers.simplelottory.control.LottoryMatch;
 import pers.simplelottory.control.excpetion.DrawFinishException;
-import pers.simplelottory.control.excpetion.MaxLimitException;
 
 public class Lottory {
 	private List<Pool> pools;
 	private LottoryDraw draw;
 	private LottoryMatch match;
+	private LottoryType type;
 
-	public Lottory(Pool... pools) {
+	public enum LottoryType {
+		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),
+		Lotto24half("Lotto24half", "4"), Bingo("BingoBingo", "5");
+
+		private String defineName;
+		private String value;
+
+		LottoryType(String defineName, String value) {
+			this.defineName = defineName;
+			this.value = value;
+		}
+
+		public String getDefineName() {
+			return this.defineName;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+
+		public String toString() {
+			return this.defineName;
+		}
+
+		public static LottoryType find(String value) {
+			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.value.equalsIgnoreCase(value)).findFirst()
+					.get();
+		}
+
+		public static boolean containsValue(String value) {
+			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.value.equalsIgnoreCase(value)).findFirst()
+					.isPresent();
+		}
+	}
+
+	public Lottory(LottoryType type, Pool... pools) {
 		this.pools = new ArrayList<>();
 		for (Pool pool : pools) {
 			this.pools.add(pool);
 		}
+		this.type = type;
 
 		// create default draw
 		draw = new LottoryDraw() {
@@ -36,8 +73,8 @@ public class Lottory {
 		};
 	}
 
-	public Lottory(LottoryDraw draw, Pool... pools) {
-		this(pools);
+	public Lottory(LottoryType type, LottoryDraw draw, Pool... pools) {
+		this(type, pools);
 		// override default draw
 		this.draw = draw;
 	}
@@ -140,6 +177,10 @@ public class Lottory {
 
 	public String toString() {
 		return this.getPrimalInfo();
+	}
+
+	public LottoryType getType() {
+		return type;
 	}
 
 }

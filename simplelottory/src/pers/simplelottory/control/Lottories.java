@@ -15,11 +15,11 @@ public class Lottories {
 			origin.getDrewNumbers(i).stream().forEach(x -> pool.getDrewNumbers().add(x));
 			pools[i] = pool;
 		}
-		lottory = new Lottory(pools);
+		lottory = new Lottory(origin.getType(), pools);
 		return lottory;
 	}
-	
-	public static void match(Lottory origin,Lottory result) {
-		
+
+	public static void match(Lottory origin, Lottory result) {
+
 	}
 }

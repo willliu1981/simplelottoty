@@ -2,7 +2,8 @@ package pers.simplelottory.test;
 
 import java.util.Arrays;
 
-import pers.simplelottory.control.LottoryManager.LottoryType;
+import pers.simplelottory.model.Lottory.LottoryType;
+
 
 public class Test3 {
 

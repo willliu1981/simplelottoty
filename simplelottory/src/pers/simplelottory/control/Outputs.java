@@ -3,7 +3,8 @@ package pers.simplelottory.control;
 import java.util.Arrays;
 import java.util.List;
 
-import pers.simplelottory.control.LottoryManager.LottoryType;
+import pers.simplelottory.model.Lottory.LottoryType;
+
 
 public class Outputs {
 	public static String tip() {

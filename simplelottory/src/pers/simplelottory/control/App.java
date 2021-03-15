@@ -1,7 +1,7 @@
 package pers.simplelottory.control;
 
-import pers.simplelottory.control.LottoryManager.LottoryType;
 import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Lottory.LottoryType;
 import pers.simplelottory.model.Pool;
 
 public class App {
@@ -20,7 +20,7 @@ public class App {
 		Lottory lottory = null;
 		switch (type) {
 		case BigLotto:
-			lottory = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
+			lottory = new Lottory(type, new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
 				@Override
 				public String getPrimalInfo() {
 					StringBuilder sb = new StringBuilder();
@@ -30,10 +30,10 @@ public class App {
 			};
 			break;
 		case Lotto539:
-			lottory = new Lottory(new Pool(39, 5));
+			lottory = new Lottory(type, new Pool(39, 5));
 			break;
 		case SuperLotto:
-			lottory = new Lottory(new Pool(38, 6), new Pool(8, 1)) {
+			lottory = new Lottory(type, new Pool(38, 6), new Pool(8, 1)) {
 				@Override
 				public String getPrimalInfo() {
 					StringBuilder sb = new StringBuilder();
@@ -43,10 +43,10 @@ public class App {
 			};
 			break;
 		case Lotto24half:
-			lottory = new Lottory(new Pool(24, 12));
+			lottory = new Lottory(type, new Pool(24, 12));
 			break;
 		case Bingo:
-			lottory = new Lottory(new Pool(80, 20));
+			lottory = new Lottory(type, new Pool(80, 20));
 			break;
 		}
 		return lottory;

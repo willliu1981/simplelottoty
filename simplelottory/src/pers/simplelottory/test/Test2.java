@@ -3,7 +3,8 @@ package pers.simplelottory.test;
 import java.util.HashMap;
 import java.util.Map;
 
-import pers.simplelottory.control.LottoryManager.LottoryType;
+import pers.simplelottory.model.Lottory.LottoryType;
+
 
 public class Test2 {
 	public static void main(String s[]) {

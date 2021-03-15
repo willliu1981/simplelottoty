@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import pers.simplelottory.control.Outputs;
-import pers.simplelottory.control.LottoryManager.LottoryType;
+import pers.simplelottory.model.Lottory.LottoryType;
 
 public class Test6 {
 

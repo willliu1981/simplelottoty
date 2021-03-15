@@ -2,18 +2,18 @@ package pers.simplelottory.test;
 
 import pers.simplelottory.control.BigLottoDraw;
 import pers.simplelottory.control.LottoryManager;
-import pers.simplelottory.control.LottoryManager.LottoryType;
 import pers.simplelottory.main.SimpleLottory;
 import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Lottory.LottoryType;
 import pers.simplelottory.model.Pool;
 
 public class Test {
 
 	public static void main(String[] args) {
 		SimpleLottory app = new SimpleLottory();
-		Lottory bigLotto = new Lottory(new BigLottoDraw(), new Pool(49, 6), new Pool(1));
-		Lottory lotto539 = new Lottory(new Pool(39, 5));
-		Lottory superlotto = new Lottory(new Pool(38, 6), new Pool(8, 1));
+		Lottory bigLotto = new Lottory(LottoryType.BigLotto,new BigLottoDraw(), new Pool(49, 6), new Pool(1));
+		Lottory lotto539 = new Lottory(LottoryType.Lotto539,new Pool(39, 5));
+		Lottory superlotto = new Lottory(LottoryType.SuperLotto,new Pool(38, 6), new Pool(8, 1));
 		app.manager.addLottory(bigLotto, LottoryType.BigLotto);
 		app.manager.addLottory(lotto539, LottoryType.Lotto539);
 		app.manager.addLottory(superlotto, LottoryType.SuperLotto);
