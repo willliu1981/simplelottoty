@@ -148,15 +148,9 @@ public class Lottory {
 	protected String getDefaultInfo(boolean sort) {
 		StringBuilder sb = new StringBuilder();
 		if (sort) {
-			this.pools.stream().forEach(x -> {
-				x.getDrewNumbers().stream().sorted().forEach(x2 -> sb.append(x2 + " "));
-				sb.append("  ");
-			});
+			this.getDefaultPoolDrewNumbers().stream().sorted().forEach(x -> sb.append(" " + x));
 		} else {
-			this.pools.stream().forEach(x -> {
-				x.getDrewNumbers().stream().forEach(x2 -> sb.append(x2 + " "));
-				sb.append("  ");
-			});
+			this.getDefaultPoolDrewNumbers().forEach(x -> sb.append(" " + x));
 		}
 		return sb.toString();
 	}
