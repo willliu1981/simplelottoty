@@ -34,7 +34,7 @@ public class SimpleLottoryCustiomer {
 				}
 
 				customer_manager.match();
-				System.out.println("xxx:"+customer_manager.getMasterLottoryManager().getDrewNumbers(LottoryType.BigLotto, 0));
+				System.out.println("xxx:"+customer_manager.getMasterLottoryManager().getLottory(LottoryType.BigLotto).getPrimalInfo());
 				customer_manager.testShowResults();
 				matchDrawResult(br);
 

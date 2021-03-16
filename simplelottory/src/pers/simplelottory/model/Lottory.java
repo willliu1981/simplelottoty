@@ -9,10 +9,13 @@ import pers.simplelottory.control.strategy.LottoryDraw;
 import pers.simplelottory.control.strategy.LottoryMatch;
 
 public class Lottory {
+	private static Integer auto_increment = 0;
+
 	private List<Pool> pools;
 	private LottoryDraw draw;
 	private LottoryMatch match;
 	private LottoryType type;
+	private Integer id;
 
 	public enum LottoryType {
 		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),
@@ -42,10 +45,10 @@ public class Lottory {
 			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.value.equalsIgnoreCase(value)).findFirst()
 					.get();
 		}
-		
+
 		public static LottoryType findByDefinename(String name) {
-			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.defineName .equalsIgnoreCase(name)).findFirst()
-					.get();
+			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.defineName.equalsIgnoreCase(name))
+					.findFirst().get();
 		}
 
 		public static boolean containsValue(String value) {
@@ -55,6 +58,7 @@ public class Lottory {
 	}
 
 	public Lottory(LottoryType type, Pool... pools) {
+		this.setId();
 		this.pools = new ArrayList<>();
 		for (Pool pool : pools) {
 			this.pools.add(pool);
@@ -132,6 +136,14 @@ public class Lottory {
 		return this.getPool(pool_index).getDrewNumbers();
 	}
 
+	public List<Integer> get(int index) {
+		return this.getDrewNumbers(index);
+	}
+
+	public void set(List<Integer> data, int index) {
+		this.getPool(index).set(data);
+	}
+
 	public void testPrint() {
 		for (Pool pool : this.pools) {
 			pool.getDrewNumbers().forEach(x -> System.out.print(" " + x));
@@ -151,7 +163,7 @@ public class Lottory {
 	}
 
 	protected String getDefaultInfo(boolean sort) {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(this.getId()+": ");
 		if (sort) {
 			this.getDefaultPoolDrewNumbers().stream().sorted().forEach(x -> sb.append(" " + x));
 		} else {
@@ -188,6 +200,18 @@ public class Lottory {
 
 	public List<Pool> match(Lottory master) {
 		return this.match.match(this.pools, master.getPools());
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	private void setId() {
+		this.id = auto_increment++;
+	}
+	
+	public void setId(Integer id) {
+		this.id=id;
 	}
 
 	public String toString() {

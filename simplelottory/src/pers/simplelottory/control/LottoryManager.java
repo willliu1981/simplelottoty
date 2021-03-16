@@ -58,8 +58,9 @@ public class LottoryManager {
 	public void drawAll() {
 		Set<String> sets = this.mapLottory.keySet();
 		Iterator<String> it = sets.iterator();
-		if (it.hasNext()) {
-			this.draw(LottoryType.findByDefinename(it.next()));
+		while (it.hasNext()) {
+			String name=it.next();
+			this.draw(LottoryType.findByDefinename(name));
 		}
 	}
 

@@ -69,4 +69,12 @@ public class Pool {
 		this.origin_numbers.addAll(this.drew_numbers);
 		this.drew_numbers.clear();
 	}
+	
+	public List<Integer> get(){
+		return this.drew_numbers;
+	}
+	
+	public void set(List<Integer> data) {
+		this.drew_numbers=data;
+	}
 }
