@@ -30,5 +30,9 @@ public class Test7 {
 		public AA(int a) {
 			this.a=a;
 		}
+		
+		public void aa() {
+			
+		}
 	}
 }

@@ -33,6 +33,7 @@ public class SimpleLottoryCustiomer {
 					continue;
 				}
 
+				customer_manager.match();
 				matchDrawResult(br);
 
 			}
@@ -95,10 +96,11 @@ public class SimpleLottoryCustiomer {
 
 	private static boolean askCreateOther(BufferedReader br) throws IOException {
 		System.out.println("Create other Y/N?");
+		String read=br.readLine().trim();
 		while (true) {
-			if (br.readLine().trim().equalsIgnoreCase("y")) {
+			if (read.equalsIgnoreCase("y")) {
 				return true;
-			} else if (br.readLine().trim().equalsIgnoreCase("n")) {
+			} else if (read.equalsIgnoreCase("n")) {
 				return false;
 			} else {
 				System.out.println("Illegal inputs");

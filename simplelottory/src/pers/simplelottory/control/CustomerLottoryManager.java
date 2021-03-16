@@ -66,9 +66,9 @@ public class CustomerLottoryManager {
 		return temp;
 	}
 
-	public void match(Lottory master) {
-		this.mapCustomerLottory.values().stream().forEach(x -> {
-			x.match(master);
+	public void match() {
+		this.mapCustomerLottory.keySet().forEach(x -> {
+			this.mapCustomerLottory.get(x).match(this.master_manager.getLottory(x));
 		});
 	}
 
