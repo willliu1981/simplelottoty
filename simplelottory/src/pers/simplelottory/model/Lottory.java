@@ -67,7 +67,7 @@ public class Lottory {
 		// create default match
 		match = new LottoryMatch() {
 			@Override
-			public int match(List<Pool> origin, List<Pool> master) {
+			public List<Pool> match(List<Pool> origin, List<Pool> master) {
 				return this.default_match(origin, master);
 			}
 		};
@@ -181,8 +181,8 @@ public class Lottory {
 		return pools;
 	}
 
-	public void match(Lottory master) {
-		this.match.match(this.pools, master.getPools());
+	public List<Pool> match(Lottory master) {
+		return this.match.match(this.pools, master.getPools());
 	}
 
 	public String toString() {

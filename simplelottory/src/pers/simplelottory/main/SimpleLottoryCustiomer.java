@@ -23,17 +23,18 @@ public class SimpleLottoryCustiomer {
 			while (true) {
 				System.out.println(Outputs.tip());
 				LottoryType type = askType(br);
-				
+
 				int num = askCreateQuantity(br);
 				List<Lottory> list = customer_manager.createNewCustomerLottoriesForNumber(num, type);
 				System.out.format("%s Add this:\n", type);
 				System.out.println(Outputs.foreach(list, 10));
-				
+
 				if (askCreateOther(br)) {
 					continue;
 				}
 
 				customer_manager.match();
+				customer_manager.testShowResults();
 				matchDrawResult(br);
 
 			}
@@ -96,8 +97,9 @@ public class SimpleLottoryCustiomer {
 
 	private static boolean askCreateOther(BufferedReader br) throws IOException {
 		System.out.println("Create other Y/N?");
-		String read=br.readLine().trim();
+		String read;
 		while (true) {
+			read = br.readLine().trim();
 			if (read.equalsIgnoreCase("y")) {
 				return true;
 			} else if (read.equalsIgnoreCase("n")) {

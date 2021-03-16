@@ -67,6 +67,7 @@ public class CustomerLottoryManager {
 	}
 
 	public void match() {
+		this.master_manager.resetAll();
 		this.mapCustomerLottory.keySet().forEach(x -> {
 			this.mapCustomerLottory.get(x).match(this.master_manager.getLottory(x));
 		});
@@ -78,6 +79,14 @@ public class CustomerLottoryManager {
 
 	public void reset(LottoryType type) {
 		this.getCustomerLottory(type).reset();
+	}
+	
+	public void testShowResults() {
+		this.mapCustomerLottory.values().stream().forEach(x->x.testShowResults());
+	}
+	
+	public LottoryManager getMasterLottoryManager() {
+		return this.master_manager;
 	}
 
 }

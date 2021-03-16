@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import pers.simplelottory.control.excpetion.EndOfLottoryListException;
 import pers.simplelottory.model.Lottory;
+import pers.simplelottory.model.Pool;
 
 public class CustomerLottory {
 	protected List<Lottory> lottories;
@@ -58,8 +60,16 @@ public class CustomerLottory {
 
 	public void match(Lottory master) {
 		this.lottories.forEach(x -> {
-			x.match(master);
+			List<Pool> match_result = x.match(master);
+			Pool[] pools=new Pool[match_result.size()];
+			match_result.toArray(pools);
+			Lottory lottory = new Lottory(x.getType(),pools);
+			this.mapResults.put(x, lottory);
 		});
+	}
+
+	public void testShowResults() {
+		this.mapResults.values().stream().forEach(x -> System.out.println(x.getPrimalInfo()));
 	}
 
 }
