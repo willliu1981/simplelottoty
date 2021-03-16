@@ -82,6 +82,10 @@ public class CustomerLottoryManager {
 		this.getCustomerLottory(type).reset();
 	}
 
+	public void resetAll() {
+		this.mapCustomerLottory.clear();
+	}
+
 	public void testShowResults() {
 		this.mapCustomerLottory.keySet().stream().forEach(x -> {
 			System.out.println(LottoryType.findByDefinename(x) + ":  Master numbers "

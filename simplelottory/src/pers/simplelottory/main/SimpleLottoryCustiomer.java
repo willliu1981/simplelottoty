@@ -33,14 +33,11 @@ public class SimpleLottoryCustiomer {
 					continue;
 				}
 
-				customer_manager.match();
-				System.out.println("");
-				System.out.println("Master numbers:");
-				customer_manager.testShowMaster();
-				System.out.println("");
-				System.out.println("Customer numbers:");
-				customer_manager.testShowResults();
-				matchDrawResult(br);
+				if (askRestart(br)) {
+					continue;
+				} else {
+					break;
+				}
 
 			}
 		} catch (IOException e) {
@@ -102,6 +99,17 @@ public class SimpleLottoryCustiomer {
 
 	private static boolean askCreateOther(BufferedReader br) throws IOException {
 		System.out.println("Create other Y/N?");
+		boolean r = false;
+		if (askYorN(br)) {
+			r = true;
+		} else {
+			matchDrawResult(br);
+			r = false;
+		}
+		return r;
+	}
+
+	private static boolean askYorN(BufferedReader br) throws IOException {
 		String read;
 		while (true) {
 			read = br.readLine().trim();
@@ -120,7 +128,27 @@ public class SimpleLottoryCustiomer {
 	 * return result
 	 */
 	private static String matchDrawResult(BufferedReader br) {
-
-		return null;
+		customer_manager.match();
+		System.out.println("");
+		System.out.println("Master numbers:");
+		customer_manager.testShowMaster();
+		System.out.println("");
+		System.out.println("Customer numbers:");
+		customer_manager.testShowResults();
+		return br.toString();
 	}
+
+	private static boolean askRestart(BufferedReader br) throws IOException {
+		System.out.println("Restart Y/N?");
+		boolean r = false;
+		if (askYorN(br)) {
+			customer_manager.resetAll();
+			r = true;
+		} else {
+			System.out.println("GoodBye");
+			r = false;
+		}
+		return r;
+	}
+
 }
