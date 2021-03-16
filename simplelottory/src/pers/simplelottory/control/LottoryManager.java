@@ -2,17 +2,17 @@ package pers.simplelottory.control;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import pers.simplelottory.control.excpetion.DrawFinishException;
 import pers.simplelottory.model.Lottory;
 import pers.simplelottory.model.Lottory.LottoryType;
 
 public class LottoryManager {
-	protected Map<String, Lottory> mapLottory;//Map<define name , class type Lottory>
-
-	
+	protected Map<String, Lottory> mapLottory;// Map<define name , class type Lottory>
 
 	public LottoryManager() {
 		mapLottory = new HashMap<>();
@@ -53,6 +53,14 @@ public class LottoryManager {
 			}
 		}
 		return this.getLottory(type);
+	}
+
+	public void drawAll() {
+		Set<String> sets = this.mapLottory.keySet();
+		Iterator<String> it = sets.iterator();
+		if (it.hasNext()) {
+			this.draw(LottoryType.findByDefinename(it.next()));
+		}
 	}
 
 	public Lottory getLottory(String name) {

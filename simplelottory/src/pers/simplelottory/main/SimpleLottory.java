@@ -36,7 +36,7 @@ public class SimpleLottory {
 				 * process draw
 				 */
 				LottoryType type;
-				System.out.println((type = LottoryType.find(read)) + ": process info[");
+				System.out.println((type = LottoryType.findByValue(read)) + ": process info[");
 				manager.draw(type);
 				System.out.print("]\nResult:\n" + type + "=   ");
 				manager.showDrewLottoryInfo(type);

@@ -38,8 +38,13 @@ public class Lottory {
 			return this.defineName;
 		}
 
-		public static LottoryType find(String value) {
+		public static LottoryType findByValue(String value) {
 			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.value.equalsIgnoreCase(value)).findFirst()
+					.get();
+		}
+		
+		public static LottoryType findByDefinename(String name) {
+			return Arrays.asList(LottoryType.values()).stream().filter(x -> x.defineName .equalsIgnoreCase(name)).findFirst()
 					.get();
 		}
 

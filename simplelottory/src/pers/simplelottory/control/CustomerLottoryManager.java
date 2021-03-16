@@ -68,6 +68,7 @@ public class CustomerLottoryManager {
 
 	public void match() {
 		this.master_manager.resetAll();
+		this.master_manager.drawAll();
 		this.mapCustomerLottory.keySet().forEach(x -> {
 			this.mapCustomerLottory.get(x).match(this.master_manager.getLottory(x));
 		});

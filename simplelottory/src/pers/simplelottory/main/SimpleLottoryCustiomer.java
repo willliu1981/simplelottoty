@@ -34,6 +34,7 @@ public class SimpleLottoryCustiomer {
 				}
 
 				customer_manager.match();
+				System.out.println("xxx:"+customer_manager.getMasterLottoryManager().getDrewNumbers(LottoryType.BigLotto, 0));
 				customer_manager.testShowResults();
 				matchDrawResult(br);
 
@@ -61,7 +62,7 @@ public class SimpleLottoryCustiomer {
 			}
 			break;
 		}
-		return LottoryType.find(read);
+		return LottoryType.findByValue(read);
 	}
 
 	private static int askCreateQuantity(BufferedReader br) throws IOException {
