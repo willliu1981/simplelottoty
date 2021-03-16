@@ -1,14 +1,17 @@
 package pers.simplelottory.control;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import pers.simplelottory.control.excpetion.EndOfLottoryListException;
 import pers.simplelottory.model.Lottory;
 import pers.simplelottory.model.Pool;
+import pers.simplelottory.model.Lottory.LottoryType;
 
 public class CustomerLottory {
 	protected List<Lottory> lottories;
@@ -59,19 +62,42 @@ public class CustomerLottory {
 	}
 
 	public void match(Lottory master) {
-		System.out.println("yyy:"+master.getType());
 		this.lottories.forEach(x -> {
 			List<Pool> match_result = x.match(master);
-			Pool[] pools=new Pool[match_result.size()];
+			Pool[] pools = new Pool[match_result.size()];
 			match_result.toArray(pools);
-			Lottory lottory = new Lottory(x.getType(),pools);
+			Lottory lottory = App.createDefaultLottory(x.getType());
+			lottory.setPools(pools);
 			lottory.setId(x.getId());
+			int sum = 0;
+			for (int i = 0; i < x.getPoolSize(); i++) {
+				sum += x.getDrewSize(i);
+			}
+			lottory.setTag(lottory.getTag() + " matchs:" + sum);
 			this.mapMatchedResult.put(x, lottory);
 		});
 	}
 
 	public void testShowResults() {
-		this.mapMatchedResult.values().stream().forEach(x -> System.out.println(x.getPrimalInfo()));
+		this.mapMatchedResult.keySet().stream().filter(x -> {
+			String[] tags = x.getTag().split(" ");
+			Optional<String> kvOp = Arrays.asList(tags).stream().filter(x2 -> {
+				String[] kv = x2.split(":");
+				return kv[0].equalsIgnoreCase("matchs");
+			}).findFirst();
+			int sum = 0;
+			if (kvOp.isPresent()) {
+				try {
+					sum = Integer.valueOf(kvOp.get().split(":")[1]);
+				} catch (NumberFormatException ex) {
+					sum = 0;
+				}
+			}
+			return sum >= 1;
+		}).forEach(x -> {
+			System.out.format("%s  ---- > ", x.getSortedInfo());
+			System.out.format("%s \n", this.mapMatchedResult.get(x).getSortedInfo());
+		});
 	}
 
 }

@@ -16,6 +16,7 @@ public class Lottory {
 	private LottoryMatch match;
 	private LottoryType type;
 	private Integer id;
+	private String tag = "";
 
 	public enum LottoryType {
 		BigLotto("BigLotto", "1"), SuperLotto("SuperLotto", "2"), Lotto539("Lotto539", "3"),
@@ -163,7 +164,7 @@ public class Lottory {
 	}
 
 	protected String getDefaultInfo(boolean sort) {
-		StringBuilder sb = new StringBuilder(this.getId()+": ");
+		StringBuilder sb = new StringBuilder(String.format("<ID:%s> ", this.getId()));
 		if (sort) {
 			this.getDefaultPoolDrewNumbers().stream().sorted().forEach(x -> sb.append(" " + x));
 		} else {
@@ -209,9 +210,17 @@ public class Lottory {
 	private void setId() {
 		this.id = auto_increment++;
 	}
-	
+
 	public void setId(Integer id) {
-		this.id=id;
+		this.id = id;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = (tag == null ? "" : tag);
 	}
 
 	public String toString() {

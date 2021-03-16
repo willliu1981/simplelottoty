@@ -23,10 +23,10 @@ public class App {
 		case BigLotto:
 			lottory = new Lottory(type, new BigLottoDraw(), new Pool(49, 6), new Pool(1)) {
 				@Override
-				public String getPrimalInfo() {
+				protected String getDefaultInfo(boolean sort) {
 					StringBuilder sb = new StringBuilder();
 					this.getDrewNumbers(1).forEach(x -> sb.append(" " + x));
-					return super.getPrimalInfo() + "    special number:" + sb.toString();
+					return super.getDefaultInfo(sort) + "    special number:" + sb.toString();
 				}
 			};
 			break;
@@ -36,10 +36,10 @@ public class App {
 		case SuperLotto:
 			lottory = new Lottory(type, new Pool(38, 6), new Pool(8, 1)) {
 				@Override
-				public String getPrimalInfo() {
+				protected String getDefaultInfo(boolean sort) {
 					StringBuilder sb = new StringBuilder();
 					this.getDrewNumbers(1).forEach(x -> sb.append(" " + x));
-					return super.getPrimalInfo() + "    Second Area number:" + sb.toString();
+					return super.getDefaultInfo(sort) + "    Second Area number:" + sb.toString();
 				}
 			};
 			break;

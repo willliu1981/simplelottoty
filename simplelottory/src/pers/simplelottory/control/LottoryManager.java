@@ -59,7 +59,7 @@ public class LottoryManager {
 		Set<String> sets = this.mapLottory.keySet();
 		Iterator<String> it = sets.iterator();
 		while (it.hasNext()) {
-			String name=it.next();
+			String name = it.next();
 			this.draw(LottoryType.findByDefinename(name));
 		}
 	}
@@ -88,6 +88,10 @@ public class LottoryManager {
 
 	public void showDrewLottorySortedInfo(LottoryType type) {
 		System.out.println(this.getLottory(type).getSortedInfo());
+	}
+
+	public void testShowDrewInfo() {
+		this.mapLottory.values().stream().forEach(x -> System.out.format("%s : %s\n",x.getType(), x.getSortedInfo()));
 	}
 
 	public List<Integer> getDrewNumbers(LottoryType type, int pool_index) {

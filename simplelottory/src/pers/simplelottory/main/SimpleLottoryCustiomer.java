@@ -34,7 +34,11 @@ public class SimpleLottoryCustiomer {
 				}
 
 				customer_manager.match();
-				System.out.println("xxx:"+customer_manager.getMasterLottoryManager().getLottory(LottoryType.BigLotto).getPrimalInfo());
+				System.out.println("");
+				System.out.println("Master numbers:");
+				customer_manager.testShowMaster();
+				System.out.println("");
+				System.out.println("Customer numbers:");
 				customer_manager.testShowResults();
 				matchDrawResult(br);
 

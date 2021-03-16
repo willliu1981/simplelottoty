@@ -81,11 +81,20 @@ public class CustomerLottoryManager {
 	public void reset(LottoryType type) {
 		this.getCustomerLottory(type).reset();
 	}
-	
+
 	public void testShowResults() {
-		this.mapCustomerLottory.values().stream().forEach(x->x.testShowResults());
+		this.mapCustomerLottory.keySet().stream().forEach(x -> {
+			System.out.println(LottoryType.findByDefinename(x) + ":  Master numbers "
+					+ this.master_manager.getLottory(LottoryType.findByDefinename(x)).getSortedInfo());
+			this.mapCustomerLottory.get(x).testShowResults();
+			System.out.println();
+		});
 	}
-	
+
+	public void testShowMaster() {
+		this.master_manager.testShowDrewInfo();
+	}
+
 	public LottoryManager getMasterLottoryManager() {
 		return this.master_manager;
 	}
