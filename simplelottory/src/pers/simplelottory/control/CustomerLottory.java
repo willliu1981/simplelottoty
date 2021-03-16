@@ -70,8 +70,8 @@ public class CustomerLottory {
 			lottory.setPools(pools);
 			lottory.setId(x.getId());
 			int sum = 0;
-			for (int i = 0; i < x.getPoolSize(); i++) {
-				sum += x.getDrewSize(i);
+			for (int i = 0; i < match_result.size(); i++) {
+				sum += match_result.get(i).getDrewNumbersSize();
 			}
 			lottory.setTag(lottory.getTag() + " matchs:" + sum);
 			this.mapMatchedResult.put(x, lottory);
@@ -80,7 +80,7 @@ public class CustomerLottory {
 
 	public void testShowResults() {
 		this.mapMatchedResult.keySet().stream().filter(x -> {
-			String[] tags = x.getTag().split(" ");
+			String[] tags = this.mapMatchedResult.get(x).getTag().split(" ");
 			Optional<String> kvOp = Arrays.asList(tags).stream().filter(x2 -> {
 				String[] kv = x2.split(":");
 				return kv[0].equalsIgnoreCase("matchs");
